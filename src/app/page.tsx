@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -9,7 +10,7 @@ import { improveStudyPlan } from '@/ai/flows/improve-study-plan-flow';
 import type { GenerateStudyPlanInput } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Sparkles, MessageSquareWarning } from 'lucide-react';
+import { Sparkles, MessageSquareWarning, Loader2 } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 
