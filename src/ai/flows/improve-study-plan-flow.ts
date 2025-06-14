@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview Flow for improving an existing daily study plan based on user feedback.
@@ -30,7 +31,7 @@ export type ImproveStudyPlanInput = z.infer<typeof ImproveStudyPlanInputSchema>;
 const ImproveStudyPlanOutputSchema = z.object({
   improvedStudyPlan: z
     .string()
-    .describe('The improved daily study plan based on the user feedback and original context.'),
+    .describe('The improved daily study plan based on the user feedback and original context. It should be easily readable as plain text, with each scheduled item on a new line, using natural language and avoiding markdown or excessive brackets.'),
 });
 export type ImproveStudyPlanOutput = z.infer<typeof ImproveStudyPlanOutputSchema>;
 
@@ -60,7 +61,7 @@ Instructions for Improving the Daily Plan:
 3.  The improved plan must remain a *daily* plan for the same date as the original.
 4.  Ensure all core requirements of a good study plan are met: scheduled tasks (homework, curriculum study), breaks, school time, and at least 8 hours of sleep.
 5.  If the feedback is vague, make reasonable adjustments. If it contradicts a fundamental constraint (like not enough time for sleep), try to find a compromise or explain the limitation in the plan if necessary (though ideally, produce a usable plan).
-6.  The output should be only the "Improved Study Plan", well-structured and clear.
+6.  The output should be only the "Improved Study Plan", well-structured and clear. **It should follow a human-readable, line-by-line format: each entry with a time slot and a natural language description of the activity or subject. Avoid markdown list characters (like hyphens or asterisks at the start of lines), excessive brackets, or technical jargon.**
 
 Generate the improved daily study plan now.
 Improved Daily Study Plan:`,
@@ -77,3 +78,4 @@ const improveStudyPlanFlow = ai.defineFlow(
     return output!;
   }
 );
+

@@ -43,7 +43,7 @@ const GenerateStudyPlanInputSchema = z.object({
 export type GenerateStudyPlanInput = z.infer<typeof GenerateStudyPlanInputSchema>;
 
 const GenerateStudyPlanOutputSchema = z.object({
-  studyPlan: z.string().describe("The generated *daily* study plan for the specified 'currentDate'. It should be detailed, listing specific times, subjects/tasks from curriculum and homework (considering deadlines), breaks, ensuring at least 8 hours of sleep, and allocating A LOT of time for general curriculum study."),
+  studyPlan: z.string().describe("The generated *daily* study plan for the specified 'currentDate'. It should be detailed, listing specific times, subjects/tasks from curriculum and homework (considering deadlines), breaks, ensuring at least 8 hours of sleep, and allocating A LOT of time for general curriculum study. The plan should be easily readable as plain text, with each scheduled item on a new line, using natural language and avoiding markdown or excessive brackets."),
 });
 export type GenerateStudyPlanOutput = z.infer<typeof GenerateStudyPlanOutputSchema>;
 
@@ -83,7 +83,7 @@ Instructions for Generating the Daily Plan for {{currentDate}}:
 6.  Early Morning Study: If {{{earlyMorningStudy}}} is true, consider scheduling a study block (either for homework or general curriculum study) before school (and before commute, if applicable).
 7.  Include Breaks and Meals: Integrate short breaks (e.g., 10-15 minutes) after study or homework blocks. Also include longer breaks for meals (e.g., breakfast, lunch, dinner).
 8.  Ensure Sufficient Sleep: The plan must allow for at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start, commute, and any early morning study preferences.
-9.  Clear Structure: Present the plan chronologically with specific time slots (e.g., "7:00 AM - 7:30 AM: Breakfast", "3:30 PM - 4:30 PM: Math Homework - Algebra Ch3 (Due EOD)", "5:00 PM - 6:30 PM: STUDY: Physics - Chapter 4 Review & Practice Problems").
+9.  Clear Structure: Present the plan chronologically. Each entry should clearly state the time slot (e.g., '7:00 AM - 7:30 AM'), followed by the activity or subject (e.g., 'Breakfast', 'Math Homework: Algebra Ch3, Due EOD', 'STUDY: Physics - Chapter 4 Review'). **Use simple, natural language for descriptions. Avoid using markdown list characters (like hyphens or asterisks at the start of lines), excessive brackets, or overly technical jargon. The plan should be easily readable as plain text, with each scheduled item on a new line.**
 10. Be Realistic but Rigorous: Avoid over-scheduling, but ensure the plan is challenging enough to be productive, especially with ample general study time.
 11. Handling Missing Information:
     *   If "commitmentsToday" is not provided or empty, proceed without scheduling fixed commitments.
