@@ -157,13 +157,13 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
               </FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="e.g., Math: Algebra worksheet Ch3 (1 hour), History: Read Chapter 5 & answer Qs (1.5 hours)"
+                  placeholder="e.g., Math: Algebra worksheet Ch3 (1 hour, Due EOD). History: Read Chapter 5 & answer Qs (1.5 hours, Due Tomorrow Morning)."
                   className="resize-none min-h-[100px]"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                List specific homework tasks for today: subject, task, and estimated time.
+                List specific homework tasks for today: subject, task, estimated time, and its deadline.
               </FormDescription>
               <FormMessage />
             </FormItem>
