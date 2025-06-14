@@ -1,3 +1,4 @@
+
 "use client";
 
 import type { ChangeEvent } from 'react';
@@ -5,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format, parseISO } from 'date-fns';
-import { CalendarIcon, Info, Save } from 'lucide-react';
+import { CalendarIcon, Info, Save, Clock } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -39,13 +40,14 @@ export function ProfileForm() {
   const form = useForm<ProfileFormData>({
     resolver: zodResolver(ProfileDataSchema),
     defaultValues: {
-      age: undefined, // Will be handled by input type="number" correctly
+      age: undefined, 
       class: '',
       curriculum: '',
       examDate: undefined,
       schoolStartTime: '08:00',
       schoolEndTime: '15:00',
       earlyMorningStudy: false,
+      commuteTime: '',
     },
   });
 
@@ -56,13 +58,13 @@ export function ProfileForm() {
       if (savedData) {
         const parsedData = JSON.parse(savedData) as Partial<ProfileFormData>;
         if (parsedData.examDate && typeof parsedData.examDate === 'string') {
-          parsedData.examDate = parseISO(parsedData.examDate); // Ensure date is object
+          parsedData.examDate = parseISO(parsedData.examDate); 
         }
-        // Ensure age is number or undefined for the form
+        
         if (parsedData.age !== undefined && parsedData.age !== null && parsedData.age !== '') {
             parsedData.age = Number(parsedData.age);
         } else {
-            parsedData.age = undefined; // Or provide a default number if required by schema for empty like 0
+            parsedData.age = undefined; 
         }
         form.reset(parsedData);
       }
@@ -74,11 +76,11 @@ export function ProfileForm() {
         description: "Could not load saved profile data.",
       });
     }
-  }, [form, toast]); // Added toast to dependency array
+  }, [form, toast]); 
 
   const onSubmit = (data: ProfileFormData) => {
     try {
-      // Format date to string before saving, if it's a Date object
+      
       const dataToSave = {
         ...data,
         examDate: data.examDate ? format(data.examDate, 'yyyy-MM-dd') : undefined,
@@ -105,7 +107,7 @@ export function ProfileForm() {
   if (!isMounted) {
     return (
       <div className="space-y-4">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(7)].map((_, i) => ( // Increased array size for new field
           <div key={i} className="space-y-2">
             <div className="h-4 bg-muted rounded w-1/4 animate-pulse"></div>
             <div className="h-10 bg-muted rounded w-full animate-pulse"></div>
@@ -201,7 +203,6 @@ export function ProfileForm() {
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    // disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1)) } 
                     initialFocus
                   />
                 </PopoverContent>
@@ -248,6 +249,26 @@ export function ProfileForm() {
             )}
           />
         </div>
+        
+        <FormField
+          control={form.control}
+          name="commuteTime"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center">
+                <Clock className="mr-2 h-5 w-5 text-primary" />
+                Daily Commute Time
+              </FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., 30 mins each way, 1 hour total" {...field} value={field.value ?? ''} />
+              </FormControl>
+              <FormDescription>
+                Approximate round-trip time spent commuting to/from school, if applicable.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

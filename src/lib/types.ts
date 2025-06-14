@@ -9,6 +9,7 @@ const ProfileFormFieldsSchema = z.object({
   schoolStartTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)"),
   schoolEndTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)"),
   earlyMorningStudy: z.boolean().default(false),
+  commuteTime: z.string().max(100, "Commute time description is too long (e.g., 30 mins each way)").optional().describe('Estimated daily round-trip commute time (e.g., "30 minutes each way" or "1 hour total").'),
 });
 
 // Schema for data that is relatively constant, with refinement
@@ -45,8 +46,8 @@ export const CombinedStudyPlanInputSchema = ProfileFormFieldsSchema.extend({
   examDate: z.string().describe("The date of the upcoming major exam, YYYY-MM-DD."),
   // Add daily fields
   currentDate: z.string().describe("The date for which the plan is being generated, YYYY-MM-DD."),
-  commitmentsToday: z.string().optional().describe("Commitments for today."),
-  homeworkDetailsToday: z.string().optional().describe("Homework for today."),
+  commitmentsToday: z.string().optional().describe("Commitments for today, including time slots (e.g., 'Guitar lesson 4-5 PM')."),
+  homeworkDetailsToday: z.string().optional().describe("Homework for today, including subject, task, and estimated time (e.g., 'Math: Algebra Ch3 (1hr), History: Essay outline (1.5hr)')."),
 }).refine(data => { // Re-apply the refinement as schoolStartTime and schoolEndTime are part of this schema
   if (data.schoolStartTime && data.schoolEndTime) {
     const [startHour, startMinute] = data.schoolStartTime.split(':').map(Number);

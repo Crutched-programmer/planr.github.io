@@ -1,8 +1,9 @@
+
 'use server';
 
 /**
  * @fileOverview This file defines a Genkit flow for generating a personalized DAILY study plan.
- * It takes comprehensive user profile data (age, class, curriculum, school schedule, etc.)
+ * It takes comprehensive user profile data (age, class, curriculum, school schedule, commute, etc.)
  * and daily inputs (current date, today's homework, today's commitments)
  * to generate an optimal daily study plan.
  *
@@ -22,6 +23,7 @@ const GenerateStudyPlanInputSchema = z.object({
   curriculum: z.string().describe('The curriculum or syllabus the student is following (e.g., subjects like Math, Science, History).'),
   schoolStartTime: z.string().describe('The time school starts, in HH:MM format (e.g., 08:00).'),
   schoolEndTime: z.string().describe('The time school ends, in HH:MM format (e.g., 15:00).'),
+  commuteTime: z.string().optional().describe('Estimated daily round-trip commute time (e.g., "30 minutes each way" or "1 hour total"). This time should be factored in before school and after school.'),
   earlyMorningStudy: z.boolean().describe('Whether the student is willing to wake up early to study before school.'),
   examDate: z.string().describe('The date of the student\'s next major exam (YYYY-MM-DD). This provides context for study priorities.'),
   
@@ -50,7 +52,7 @@ export async function generateStudyPlan(input: GenerateStudyPlanInput): Promise<
 }
 
 const generateStudyPlanPrompt = ai.definePrompt({
-  name: 'generateDailyStudyPlanPrompt', // Renamed for clarity
+  name: 'generateDailyStudyPlanPrompt', 
   input: {schema: GenerateStudyPlanInputSchema},
   output: {schema: GenerateStudyPlanOutputSchema},
   prompt: `You are an expert study plan generator. Your task is to create a detailed and personalized *daily* study plan for a student for *today, {{currentDate}}*.
@@ -60,6 +62,7 @@ Student Profile:
   Class/Grade: {{{class}}}
   Curriculum/Subjects: {{{curriculum}}}
   School Day: Starts at {{{schoolStartTime}}} and ends at {{{schoolEndTime}}}.
+  Commute Time: {{{commuteTime}}}
   Willing to study early in the morning (before school): {{{earlyMorningStudy}}}
   Next Major Exam Date: {{{examDate}}} (Keep this in mind for general subject prioritization if specific homework isn't pressing for all subjects).
 
@@ -69,15 +72,18 @@ Today's Details (for {{currentDate}}):
 
 Instructions for Generating the Daily Plan for {{currentDate}}:
 1.  The plan MUST be for a single day: {{currentDate}}.
-2.  Allocate time for school based on start and end times.
-3.  Schedule specific homework tasks listed in "Homework to Complete Today". Ensure each task is explicitly mentioned with its estimated time.
-4.  If there's time after homework, schedule study blocks for subjects from the "Curriculum/Subjects", prioritizing based on the upcoming "Next Major Exam Date" if applicable, or general curriculum balance.
-5.  Incorporate any "Commitments Today" into the schedule.
-6.  Include short breaks (e.g., 10-15 minutes) after study or homework blocks.
-7.  Ensure the student gets at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start and early morning study preference.
-8.  Structure the plan clearly, ideally chronologically with specific time slots (e.g., 7:00 AM - 7:30 AM: Breakfast; 3:30 PM - 4:30 PM: Math Homework - Algebra Ch3).
-9.  Be realistic. Avoid over-scheduling. The plan should be achievable.
-10. If "commitmentsToday" or "homeworkDetailsToday" are not provided or empty, state "No specific commitments listed for today." or "No specific homework listed for today." and build the study plan around curriculum subjects.
+2.  Calculate total school duration. Account for {{{commuteTime}}} (if provided) before school starts and after school ends. This commute time should block out time in the schedule.
+3.  Prioritize and schedule all specific homework tasks listed in "Homework to Complete Today". Ensure each task is explicitly mentioned with its estimated time. Allocate dedicated time slots for each homework item.
+4.  After scheduling homework, incorporate any "Commitments Today" into the schedule.
+5.  If there is available time after homework and commitments, schedule focused study blocks for subjects from the "Curriculum/Subjects". Prioritize these study blocks based on the upcoming "Next Major Exam Date" and general curriculum balance. If specific homework covers a curriculum subject for the day, additional study time for that subject might be shorter or focused on revision, unless extensive study is needed.
+6.  If {{{earlyMorningStudy}}} is true, consider scheduling a study block before school (and before commute, if applicable).
+7.  Include short breaks (e.g., 10-15 minutes) after study or homework blocks. Also include longer breaks for meals (e.g., lunch, dinner).
+8.  Ensure the student gets at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start, commute, and early morning study preference.
+9.  Structure the plan clearly, ideally chronologically with specific time slots (e.g., 7:00 AM - 7:30 AM: Breakfast; 7:30 AM - 8:00 AM: Commute to School; 3:30 PM - 4:30 PM: Math Homework - Algebra Ch3).
+10. Be realistic. Avoid over-scheduling. The plan should be achievable.
+11. If "commitmentsToday" is not provided or empty, state "No specific commitments listed for today." in your reasoning (if you expose it) but not necessarily in the plan output, and build the plan.
+12. If "homeworkDetailsToday" is not provided or empty, state "No specific homework listed for today." in your reasoning (if you expose it) and focus study time on curriculum subjects.
+13. If "commuteTime" is not provided or empty, assume no commute time.
 
 Generate the daily study plan now for {{currentDate}}.
 `,
@@ -85,7 +91,7 @@ Generate the daily study plan now for {{currentDate}}.
 
 const generateStudyPlanFlow = ai.defineFlow(
   {
-    name: 'generateDailyStudyPlanFlow', // Renamed for clarity
+    name: 'generateDailyStudyPlanFlow', 
     inputSchema: GenerateStudyPlanInputSchema,
     outputSchema: GenerateStudyPlanOutputSchema,
   },
