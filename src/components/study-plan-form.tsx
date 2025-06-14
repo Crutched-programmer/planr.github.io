@@ -44,7 +44,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
   const form = useForm<StudyPlanFormData>({
     resolver: zodResolver(StudyPlanFormSchema),
     defaultValues: {
-      age: undefined,
+      age: '' as unknown as number, // Initialize with empty string to avoid uncontrolled to controlled error
       class: '',
       curriculum: '',
       examDate: undefined,
@@ -65,6 +65,10 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
         // Ensure date is properly reconstituted
         if (parsedData.examDate) {
           parsedData.examDate = new Date(parsedData.examDate);
+        }
+        // Ensure age is handled correctly if it was saved as undefined or null
+        if (parsedData.age === undefined || parsedData.age === null) {
+            parsedData.age = '' as unknown as number;
         }
         form.reset(parsedData);
       }
@@ -89,6 +93,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
   const onSubmit = (data: StudyPlanFormData) => {
     const aiInput: GenerateStudyPlanInput = {
       ...data,
+      age: Number(data.age), // Ensure age is a number for the AI
       examDate: format(data.examDate, 'yyyy-MM-dd'),
       commitments: data.commitments || "No specific other commitments.", // Provide default if empty
     };
@@ -124,7 +129,13 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
               <FormItem>
                 <FormLabel>Age</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="e.g., 16" {...field} />
+                  <Input 
+                    type="number" 
+                    placeholder="e.g., 16" 
+                    {...field} 
+                    onChange={e => field.onChange(e.target.value === '' ? '' : parseInt(e.target.value, 10))} 
+                    value={field.value === undefined || field.value === null ? '' : field.value}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
