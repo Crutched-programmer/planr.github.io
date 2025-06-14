@@ -5,7 +5,7 @@
  * @fileOverview This file defines a Genkit flow for generating a personalized DAILY study plan.
  * It takes comprehensive user profile data (age, class, curriculum, school schedule, commute, etc.)
  * and daily inputs (current date, today's homework with deadlines, today's commitments)
- * to generate an optimal daily study plan with ample study time.
+ * to generate an optimal daily study plan with ample study time and at least 8 hours of sleep.
  *
  * @interface GenerateStudyPlanInput - The combined input type for profile and daily data.
  * @interface GenerateStudyPlanOutput - The output type for the generated daily study plan.
@@ -55,7 +55,7 @@ const generateStudyPlanPrompt = ai.definePrompt({
   name: 'generateDailyStudyPlanPrompt', 
   input: {schema: GenerateStudyPlanInputSchema},
   output: {schema: GenerateStudyPlanOutputSchema},
-  prompt: `You are an expert study plan generator. Your task is to create a detailed, effective, and personalized *daily* study plan for a student for *today, {{currentDate}}*. It is CRUCIAL that this plan includes A LOT OF DEDICATED STUDY TIME for general curriculum subjects, in addition to any homework.
+  prompt: `You are an expert study plan generator. Your task is to create a detailed, effective, and personalized *daily* study plan for a student for *today, {{currentDate}}*. It is CRUCIAL that this plan includes A LOT OF DEDICATED STUDY TIME for general curriculum subjects, in addition to any homework, AND ENSURES AT LEAST 8 HOURS OF SLEEP.
 
 Student Profile:
   Age: {{{age}}}
@@ -82,15 +82,15 @@ Instructions for Generating the Daily Plan for {{currentDate}}:
     *   If "homeworkDetailsToday" is empty or not provided, then the primary focus of study blocks should be on these "Curriculum/Subjects for General Study", and these blocks should be extensive.
 6.  Early Morning Study: If {{{earlyMorningStudy}}} is true, consider scheduling a study block (either for homework or general curriculum study) before school (and before commute, if applicable).
 7.  Include Breaks and Meals: Integrate short breaks (e.g., 10-15 minutes) after study or homework blocks. Also include longer breaks for meals (e.g., breakfast, lunch, dinner).
-8.  Ensure Sufficient Sleep: The plan must allow for at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start, commute, and any early morning study preferences.
+8.  **Ensure Sufficient Sleep: The plan MUST allow for at least 8 hours of sleep.** Calculate a realistic bedtime and wake-up time, considering school start time ({{{schoolStartTime}}}), commute time ({{{commuteTime}}}), and any early morning study preferences ({{{earlyMorningStudy}}}). Schedule sleep accordingly.
 9.  Clear Structure: Present the plan chronologically. Each entry should clearly state the time slot (e.g., '7:00 AM - 7:30 AM'), followed by the activity or subject (e.g., 'Breakfast', 'Math Homework: Algebra Ch3, Due EOD', 'STUDY: Physics - Chapter 4 Review'). **Use simple, natural language for descriptions. Avoid using markdown list characters (like hyphens or asterisks at the start of lines), excessive brackets, or overly technical jargon. The plan should be easily readable as plain text, with each scheduled item on a new line.**
-10. Be Realistic but Rigorous: Avoid over-scheduling, but ensure the plan is challenging enough to be productive, especially with ample general study time.
+10. Be Realistic but Rigorous: Avoid over-scheduling, but ensure the plan is challenging enough to be productive, especially with ample general study time and guaranteed sleep.
 11. Handling Missing Information:
     *   If "commitmentsToday" is not provided or empty, proceed without scheduling fixed commitments.
     *   If "homeworkDetailsToday" is not provided or empty, state "No specific homework listed for today." in your reasoning (if you expose it) and focus all study time HEAVILY on the "Curriculum/Subjects for General Study".
     *   If "commuteTime" is not provided or empty, assume no commute time.
 
-Generate the detailed daily study plan now for {{currentDate}}, ensuring it has a strong emphasis on general curriculum study time.
+Generate the detailed daily study plan now for {{currentDate}}, ensuring it has a strong emphasis on general curriculum study time AND guarantees at least 8 hours of sleep.
 `,
 });
 

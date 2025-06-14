@@ -31,7 +31,7 @@ export type ImproveStudyPlanInput = z.infer<typeof ImproveStudyPlanInputSchema>;
 const ImproveStudyPlanOutputSchema = z.object({
   improvedStudyPlan: z
     .string()
-    .describe('The improved daily study plan based on the user feedback and original context. It should be easily readable as plain text, with each scheduled item on a new line, using natural language and avoiding markdown or excessive brackets.'),
+    .describe('The improved daily study plan based on the user feedback and original context. It should be easily readable as plain text, with each scheduled item on a new line, using natural language and avoiding markdown or excessive brackets, and still ensure at least 8 hours of sleep.'),
 });
 export type ImproveStudyPlanOutput = z.infer<typeof ImproveStudyPlanOutputSchema>;
 
@@ -57,11 +57,12 @@ User Feedback for Improvement:
 
 Instructions for Improving the Daily Plan:
 1.  Carefully consider the user's feedback and apply the requested changes to the "Existing Daily Study Plan".
-2.  Refer to the "Original User Input" to ensure the improved plan still respects the student's profile (age, school times, curriculum, exam context, sleep needs) and the original daily context (the date this plan is for, original homework/commitments if not overridden by feedback).
-3.  The improved plan must remain a *daily* plan for the same date as the original.
-4.  Ensure all core requirements of a good study plan are met: scheduled tasks (homework, curriculum study), breaks, school time, and at least 8 hours of sleep.
-5.  If the feedback is vague, make reasonable adjustments. If it contradicts a fundamental constraint (like not enough time for sleep), try to find a compromise or explain the limitation in the plan if necessary (though ideally, produce a usable plan).
-6.  The output should be only the "Improved Study Plan", well-structured and clear. **It should follow a human-readable, line-by-line format: each entry with a time slot and a natural language description of the activity or subject. Avoid markdown list characters (like hyphens or asterisks at the start of lines), excessive brackets, or technical jargon.**
+2.  Refer to the "Original User Input" to ensure the improved plan still respects the student's profile (age, school times, curriculum, exam context) and the original daily context (the date this plan is for, original homework/commitments if not overridden by feedback).
+3.  **Crucially, the improved plan MUST still ensure at least 8 hours of sleep.** Adjust schedules accordingly to maintain this requirement.
+4.  The improved plan must remain a *daily* plan for the same date as the original.
+5.  Ensure all core requirements of a good study plan are met: scheduled tasks (homework, curriculum study), breaks, school time, and at least 8 hours of sleep.
+6.  If the feedback is vague, make reasonable adjustments. If it contradicts a fundamental constraint (like not enough time for sleep after applying feedback), try to find the best possible compromise or explicitly state in the plan if a requested change cannot be fully met without sacrificing sleep (though ideally, produce a usable plan that meets the sleep requirement).
+7.  The output should be only the "Improved Study Plan", well-structured and clear. **It should follow a human-readable, line-by-line format: each entry with a time slot and a natural language description of the activity or subject. Avoid markdown list characters (like hyphens or asterisks at the start of lines), excessive brackets, or technical jargon.**
 
 Generate the improved daily study plan now.
 Improved Daily Study Plan:`,
