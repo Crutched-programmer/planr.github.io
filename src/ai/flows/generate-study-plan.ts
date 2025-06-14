@@ -20,7 +20,7 @@ const GenerateStudyPlanInputSchema = z.object({
   // Profile fields
   age: z.number().describe('The age of the student.'),
   class: z.string().describe('The current class or grade of the student.'),
-  curriculum: z.string().describe('The curriculum or syllabus the student is following (e.g., subjects like Math, Science, History).'),
+  curriculum: z.string().describe('The curriculum or syllabus the student is following (e.g., subjects like Math, Science, History). This is for general study.'),
   schoolStartTime: z.string().describe('The time school starts, in HH:MM format (e.g., 08:00).'),
   schoolEndTime: z.string().describe('The time school ends, in HH:MM format (e.g., 15:00).'),
   commuteTime: z.string().optional().describe('Estimated daily round-trip commute time (e.g., "30 minutes each way" or "1 hour total"). This time should be factored in before school and after school.'),
@@ -60,32 +60,37 @@ const generateStudyPlanPrompt = ai.definePrompt({
 Student Profile:
   Age: {{{age}}}
   Class/Grade: {{{class}}}
-  Curriculum/Subjects: {{{curriculum}}}
+  Curriculum/Subjects for General Study: {{{curriculum}}}
   School Day: Starts at {{{schoolStartTime}}} and ends at {{{schoolEndTime}}}.
   Commute Time: {{{commuteTime}}}
   Willing to study early in the morning (before school): {{{earlyMorningStudy}}}
-  Next Major Exam Date: {{{examDate}}} (Keep this in mind for general subject prioritization if specific homework isn't pressing for all subjects).
+  Next Major Exam Date: {{{examDate}}} (Keep this in mind for general subject prioritization).
 
 Today's Details (for {{currentDate}}):
   Commitments Today: {{{commitmentsToday}}}
-  Homework to Complete Today: {{{homeworkDetailsToday}}}
+  Homework to Complete Today (Subject, Task, Estimated Time): {{{homeworkDetailsToday}}}
 
 Instructions for Generating the Daily Plan for {{currentDate}}:
 1.  The plan MUST be for a single day: {{currentDate}}.
-2.  Calculate total school duration. Account for {{{commuteTime}}} (if provided) before school starts and after school ends. This commute time should block out time in the schedule.
-3.  Prioritize and schedule all specific homework tasks listed in "Homework to Complete Today". Ensure each task is explicitly mentioned with its estimated time. Allocate dedicated time slots for each homework item.
-4.  After scheduling homework, incorporate any "Commitments Today" into the schedule.
-5.  If there is available time after homework and commitments, schedule focused study blocks for subjects from the "Curriculum/Subjects". Prioritize these study blocks based on the upcoming "Next Major Exam Date" and general curriculum balance. If specific homework covers a curriculum subject for the day, additional study time for that subject might be shorter or focused on revision, unless extensive study is needed.
-6.  If {{{earlyMorningStudy}}} is true, consider scheduling a study block before school (and before commute, if applicable).
-7.  Include short breaks (e.g., 10-15 minutes) after study or homework blocks. Also include longer breaks for meals (e.g., lunch, dinner).
-8.  Ensure the student gets at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start, commute, and early morning study preference.
-9.  Structure the plan clearly, ideally chronologically with specific time slots (e.g., 7:00 AM - 7:30 AM: Breakfast; 7:30 AM - 8:00 AM: Commute to School; 3:30 PM - 4:30 PM: Math Homework - Algebra Ch3).
-10. Be realistic. Avoid over-scheduling. The plan should be achievable.
-11. If "commitmentsToday" is not provided or empty, state "No specific commitments listed for today." in your reasoning (if you expose it) but not necessarily in the plan output, and build the plan.
-12. If "homeworkDetailsToday" is not provided or empty, state "No specific homework listed for today." in your reasoning (if you expose it) and focus study time on curriculum subjects.
-13. If "commuteTime" is not provided or empty, assume no commute time.
+2.  Factor in School and Commute: Calculate total school duration. Block out time for {{{commuteTime}}} (if provided) before school starts and after school ends.
+3.  Schedule Homework First: Prioritize and schedule all specific tasks listed in "Homework to Complete Today" ({{{homeworkDetailsToday}}}). Ensure each task is explicitly mentioned with its subject and estimated time, allocating dedicated time slots.
+4.  Incorporate Commitments: After scheduling homework, fit in any "Commitments Today" ({{{commitmentsToday}}}) into the schedule.
+5.  **Allocate Dedicated Study Time for Curriculum Subjects:** After homework and commitments are scheduled, use any remaining available time to create focused study blocks for subjects listed in the student's general "Curriculum/Subjects for General Study" ({{{curriculum}}}).
+    *   **Purpose:** These study blocks are for general learning, revision of topics, pre-reading, or deeper understanding, distinct from completing specific homework tasks.
+    *   **Prioritization:** Focus on subjects that are important for the "Next Major Exam Date" ({{{examDate}}}), or subjects that did NOT have specific homework assigned for today under "Homework to Complete Today".
+    *   **Balance:** Aim for a balanced review of curriculum subjects. If a subject had extensive homework today, a shorter general study block (or none) for that specific subject might be appropriate for {{currentDate}}, allowing focus on other curriculum areas.
+    *   If "homeworkDetailsToday" is empty or not provided, then the primary focus of study blocks should be on these "Curriculum/Subjects for General Study".
+6.  Early Morning Study: If {{{earlyMorningStudy}}} is true, consider scheduling a study block (either for homework or general curriculum study) before school (and before commute, if applicable).
+7.  Include Breaks and Meals: Integrate short breaks (e.g., 10-15 minutes) after study or homework blocks. Also include longer breaks for meals (e.g., breakfast, lunch, dinner).
+8.  Ensure Sufficient Sleep: The plan must allow for at least 8 hours of sleep. Calculate a realistic bedtime and wake-up time, considering school start, commute, and any early morning study preferences.
+9.  Clear Structure: Present the plan chronologically with specific time slots (e.g., "7:00 AM - 7:30 AM: Breakfast", "3:30 PM - 4:30 PM: Math Homework - Algebra Ch3", "5:00 PM - 6:00 PM: Study Physics - Chapter 4 Review").
+10. Be Realistic: Avoid over-scheduling. The plan should be achievable and sustainable for a single day.
+11. Handling Missing Information:
+    *   If "commitmentsToday" is not provided or empty, proceed without scheduling fixed commitments.
+    *   If "homeworkDetailsToday" is not provided or empty, state "No specific homework listed for today." in your reasoning (if you expose it) and focus all study time on the "Curriculum/Subjects for General Study".
+    *   If "commuteTime" is not provided or empty, assume no commute time.
 
-Generate the daily study plan now for {{currentDate}}.
+Generate the detailed daily study plan now for {{currentDate}}.
 `,
 });
 
@@ -100,3 +105,4 @@ const generateStudyPlanFlow = ai.defineFlow(
     return output!;
   }
 );
+
