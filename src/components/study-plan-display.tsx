@@ -12,37 +12,41 @@ import {
 } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader2, Edit3, MessageSquareWarning } from 'lucide-react';
-import type { GenerateStudyPlanInput } from '@/lib/types';
+// Use the CombinedStudyPlanInput type for originalInput
+import type { CombinedStudyPlanInput } from '@/lib/types';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 
 interface StudyPlanDisplayProps {
   plan: string;
-  originalInput: GenerateStudyPlanInput;
-  onImprovePlan: (feedback: string, existingPlan: string, originalInputForExistingPlan: GenerateStudyPlanInput) => Promise<void>;
+  // originalInput now represents the combined Profile + Daily data used for generation
+  originalInput: CombinedStudyPlanInput; 
+  onImprovePlan: (feedback: string, existingPlan: string, originalCombinedInput: CombinedStudyPlanInput) => Promise<void>;
   isImproving: boolean;
   improvementError?: string | null;
+  planDate?: string; // Optional: to display the date of the plan
 }
 
-export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImproving, improvementError }: StudyPlanDisplayProps) {
+export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImproving, improvementError, planDate }: StudyPlanDisplayProps) {
   const [feedback, setFeedback] = useState('');
 
   const handleImproveSubmit = () => {
     if (!feedback.trim()) {
-        // Optionally, show a message to enter feedback
         return;
     }
     onImprovePlan(feedback, plan, originalInput);
   };
 
   return (
-    <Card className="w-full">
+    <Card className="w-full mt-8">
       <CardHeader>
-        <CardTitle className="font-headline text-2xl">Your Personalized Study Plan</CardTitle>
-        <CardDescription>Review your AI-generated plan below. You can make adjustments using the feedback section.</CardDescription>
+        <CardTitle className="font-headline text-2xl">
+          {planDate ? `Your Study Plan for ${planDate}` : "Your Personalized Study Plan"}
+        </CardTitle>
+        <CardDescription>Review your AI-generated daily plan below. You can make adjustments using the feedback section.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="p-4 border rounded-md bg-background shadow">
+        <div className="p-4 border rounded-md bg-secondary/30 shadow">
             <pre className="whitespace-pre-wrap text-sm font-body leading-relaxed">
                 {plan}
             </pre>
@@ -54,10 +58,10 @@ export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImprovi
                 Adjust Your Plan
             </h3>
             <p className="text-sm text-muted-foreground">
-                Not quite right? Provide feedback on what you'd like to change, and we'll try to generate an improved version.
+                Not quite right? Provide feedback on what you'd like to change for this daily plan, and we'll try to generate an improved version.
             </p>
             <Textarea
-                placeholder="e.g., 'I need more time for Math on weekends', 'Can I have a longer break in the afternoon?', 'I prefer studying Chemistry in the morning.'"
+                placeholder="e.g., 'I need more time for Math this afternoon', 'Can I have a longer break after school?', 'I prefer studying Chemistry earlier in the evening.'"
                 value={feedback}
                 onChange={(e) => setFeedback(e.target.value)}
                 className="min-h-[100px]"
@@ -82,7 +86,7 @@ export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImprovi
               Improving Plan...
             </>
           ) : (
-            'Improve Plan'
+            'Improve This Daily Plan'
           )}
         </Button>
       </CardFooter>

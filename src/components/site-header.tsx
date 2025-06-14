@@ -1,5 +1,6 @@
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, UserCircle, CalendarDays } from 'lucide-react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export function SiteHeader() {
   return (
@@ -11,8 +12,19 @@ export function SiteHeader() {
             StudyZen
           </span>
         </Link>
-        <nav className="flex flex-1 items-center space-x-4 lg:space-x-6">
-          {/* Future navigation items can go here */}
+        <nav className="flex flex-1 items-center space-x-2 lg:space-x-4">
+          <Button variant="ghost" asChild>
+            <Link href="/profile" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+              <UserCircle className="mr-1 h-4 w-4" />
+              My Profile
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/daily-plan" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+              <CalendarDays className="mr-1 h-4 w-4" />
+              Daily Plan
+            </Link>
+          </Button>
         </nav>
       </div>
     </header>

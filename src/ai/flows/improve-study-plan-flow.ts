@@ -1,8 +1,8 @@
 'use server';
 /**
- * @fileOverview Flow for improving an existing study plan based on user feedback.
+ * @fileOverview Flow for improving an existing daily study plan based on user feedback.
  *
- * - improveStudyPlan - A function that takes user feedback and an existing study plan to refine and generate an improved version.
+ * - improveStudyPlan - A function that takes user feedback, an existing daily study plan, and the original combined (profile + daily) user input to refine and generate an improved version.
  * - ImproveStudyPlanInput - The input type for the improveStudyPlan function.
  * - ImproveStudyPlanOutput - The return type for the improveStudyPlan function.
  */
@@ -13,16 +13,16 @@ import {z} from 'genkit';
 const ImproveStudyPlanInputSchema = z.object({
   existingStudyPlan: z
     .string()
-    .describe('The existing study plan in a readable format.'),
+    .describe('The existing daily study plan in a readable format.'),
   userFeedback: z
     .string()
     .describe(
-      'Specific feedback from the user on how to improve the study plan.'
+      'Specific feedback from the user on how to improve the daily study plan.'
     ),
   originalUserInput: z
     .string()
     .describe(
-      'The original input from the user that was used to generate the study plan.'
+      'The original combined (profile and daily) user input, as a JSON string, that was used to generate the existing study plan. This contains details like age, class, curriculum, school times, exam date, and the specific daily inputs (current date, homework, commitments for that day).'
     ),
 });
 export type ImproveStudyPlanInput = z.infer<typeof ImproveStudyPlanInputSchema>;
@@ -30,7 +30,7 @@ export type ImproveStudyPlanInput = z.infer<typeof ImproveStudyPlanInputSchema>;
 const ImproveStudyPlanOutputSchema = z.object({
   improvedStudyPlan: z
     .string()
-    .describe('The improved study plan based on the user feedback.'),
+    .describe('The improved daily study plan based on the user feedback and original context.'),
 });
 export type ImproveStudyPlanOutput = z.infer<typeof ImproveStudyPlanOutputSchema>;
 
@@ -39,25 +39,36 @@ export async function improveStudyPlan(input: ImproveStudyPlanInput): Promise<Im
 }
 
 const prompt = ai.definePrompt({
-  name: 'improveStudyPlanPrompt',
+  name: 'improveDailyStudyPlanPrompt', // Renamed for clarity
   input: {schema: ImproveStudyPlanInputSchema},
   output: {schema: ImproveStudyPlanOutputSchema},
-  prompt: `You are an AI study plan assistant. A user has provided an existing study plan and feedback on how to improve it. Use the existing study plan, the user feedback, and the original user input to generate an improved study plan.
+  prompt: `You are an AI study plan assistant. A user has provided an existing *daily* study plan and feedback on how to improve it.
+You also have the original user inputs (profile and daily details) that led to this plan.
 
-Original User Input: {{{originalUserInput}}}
+Original User Input (Profile & Daily Details for the plan's date):
+{{{originalUserInput}}}
 
-Existing Study Plan:
+Existing Daily Study Plan:
 {{{existingStudyPlan}}}
 
-User Feedback:
+User Feedback for Improvement:
 {{{userFeedback}}}
 
-Improved Study Plan:`,
+Instructions for Improving the Daily Plan:
+1.  Carefully consider the user's feedback and apply the requested changes to the "Existing Daily Study Plan".
+2.  Refer to the "Original User Input" to ensure the improved plan still respects the student's profile (age, school times, curriculum, exam context, sleep needs) and the original daily context (the date this plan is for, original homework/commitments if not overridden by feedback).
+3.  The improved plan must remain a *daily* plan for the same date as the original.
+4.  Ensure all core requirements of a good study plan are met: scheduled tasks (homework, curriculum study), breaks, school time, and at least 8 hours of sleep.
+5.  If the feedback is vague, make reasonable adjustments. If it contradicts a fundamental constraint (like not enough time for sleep), try to find a compromise or explain the limitation in the plan if necessary (though ideally, produce a usable plan).
+6.  The output should be only the "Improved Study Plan", well-structured and clear.
+
+Generate the improved daily study plan now.
+Improved Daily Study Plan:`,
 });
 
 const improveStudyPlanFlow = ai.defineFlow(
   {
-    name: 'improveStudyPlanFlow',
+    name: 'improveDailyStudyPlanFlow', // Renamed for clarity
     inputSchema: ImproveStudyPlanInputSchema,
     outputSchema: ImproveStudyPlanOutputSchema,
   },
