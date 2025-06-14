@@ -7,6 +7,7 @@ export const StudyPlanFormSchema = z.object({
   curriculum: z.string().min(1, "Curriculum is required").max(100, "Curriculum is too long"),
   examDate: z.date({ required_error: "Exam date is required." }),
   commitments: z.string().max(500, "Commitments description is too long").optional(),
+  homeworkDetails: z.string().max(1000, "Homework details are too long. Please summarize.").optional(),
   schoolStartTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)"),
   schoolEndTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)"),
   earlyMorningStudy: z.boolean().default(false),

@@ -3,8 +3,8 @@
 /**
  * @fileOverview This file defines a Genkit flow for generating a personalized study plan based on user inputs.
  *
- * The flow takes in user data such as age, class, curriculum, exam date, commitments, school schedule, and sleep preferences,
- * and generates an optimal study plan with study blocks, short breaks, commitment blocks, and at least 8 hours of sleep.
+ * The flow takes in user data such as age, class, curriculum, exam date, commitments, school schedule, sleep preferences, and homework details,
+ * and generates an optimal study plan with study blocks, short breaks, commitment blocks, homework tasks, and at least 8 hours of sleep.
  *
  * @interface GenerateStudyPlanInput - The input type for the generateStudyPlan function.
  * @interface GenerateStudyPlanOutput - The output type for the generateStudyPlan function.
@@ -24,6 +24,7 @@ const GenerateStudyPlanInputSchema = z.object({
     .describe(
       'A description of other commitments the student has, and the time slots they take up.'
     ),
+  homeworkDetails: z.string().describe('Details about current homework assignments, including subject, specific tasks, and estimated time for each. e.g., "Math: Algebra worksheet (1 hour), History: Read Chapter 5 & answer questions (1.5 hours)"').optional(),
   schoolStartTime: z.string().describe('The time school starts, in HH:MM format.'),
   schoolEndTime: z.string().describe('The time school ends, in HH:MM format.'),
   earlyMorningStudy: z
@@ -33,7 +34,7 @@ const GenerateStudyPlanInputSchema = z.object({
 export type GenerateStudyPlanInput = z.infer<typeof GenerateStudyPlanInputSchema>;
 
 const GenerateStudyPlanOutputSchema = z.object({
-  studyPlan: z.string().describe('The generated study plan. Include specific times, and specific subjects to study at each time.'),
+  studyPlan: z.string().describe('The generated study plan. Include specific times, and specific subjects/tasks to study/complete at each time, factoring in homework.'),
 });
 export type GenerateStudyPlanOutput = z.infer<typeof GenerateStudyPlanOutputSchema>;
 
@@ -47,18 +48,19 @@ const generateStudyPlanPrompt = ai.definePrompt({
   output: {schema: GenerateStudyPlanOutputSchema},
   prompt: `You are an expert study plan generator.
 
-  Based on the following information, generate a personalized study plan for the student. The study plan should include study blocks, short breaks, commitment blocks, and at least 8 hours of sleep from the prescribed wake up time.
+  Based on the following information, generate a personalized study plan for the student. The study plan should include study blocks for subjects in the curriculum, dedicated time for specific homework tasks, short breaks, commitment blocks, and at least 8 hours of sleep from the prescribed wake up time.
 
   Age: {{{age}}}
   Class: {{{class}}}
   Curriculum: {{{curriculum}}}
   Exam Date: {{{examDate}}}
   Commitments: {{{commitments}}}
+  Homework Details: {{{homeworkDetails}}}
   School Start Time: {{{schoolStartTime}}}
   School End Time: {{{schoolEndTime}}}
   Willing to wake up early to study: {{{earlyMorningStudy}}}
 
-  Ensure the study plan is realistic and takes into account the student's commitments and preferences. Specify times and subjects to study at each time.
+  Ensure the study plan is realistic and takes into account the student's commitments, homework, and preferences. Specify times and subjects to study (or homework tasks to complete) at each time. If homework details are provided, ensure they are explicitly scheduled.
   `,
 });
 

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon, Loader2, Info } from 'lucide-react';
+import { CalendarIcon, Loader2, Info, BookOpenCheck } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -44,11 +44,12 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
   const form = useForm<StudyPlanFormData>({
     resolver: zodResolver(StudyPlanFormSchema),
     defaultValues: {
-      age: '' as unknown as number, // Initialize with empty string to avoid uncontrolled to controlled error
+      age: '' as unknown as number, 
       class: '',
       curriculum: '',
       examDate: undefined,
       commitments: '',
+      homeworkDetails: '',
       schoolStartTime: '08:00',
       schoolEndTime: '15:00',
       earlyMorningStudy: false,
@@ -62,11 +63,9 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
       const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (savedData) {
         const parsedData = JSON.parse(savedData) as Partial<StudyPlanFormData>;
-        // Ensure date is properly reconstituted
         if (parsedData.examDate) {
           parsedData.examDate = new Date(parsedData.examDate);
         }
-        // Ensure age is handled correctly if it was saved as undefined or null
         if (parsedData.age === undefined || parsedData.age === null) {
             parsedData.age = '' as unknown as number;
         }
@@ -93,24 +92,22 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
   const onSubmit = (data: StudyPlanFormData) => {
     const aiInput: GenerateStudyPlanInput = {
       ...data,
-      age: Number(data.age), // Ensure age is a number for the AI
+      age: Number(data.age), 
       examDate: format(data.examDate, 'yyyy-MM-dd'),
-      commitments: data.commitments || "No specific other commitments.", // Provide default if empty
+      commitments: data.commitments || "No specific other commitments.",
+      homeworkDetails: data.homeworkDetails || "No specific homework assignments listed.",
     };
     onGeneratePlan(aiInput);
   };
   
-  // Helper for time input to ensure HH:MM format always
   const handleTimeChange = (e: ChangeEvent<HTMLInputElement>, fieldName: "schoolStartTime" | "schoolEndTime") => {
     let value = e.target.value;
-    // Basic attempt to keep it as time format, you might want a more robust time picker
     if (value.length === 2 && !value.includes(':') && parseInt(value,10) <= 23) {
       value = value + ':';
     }
     if (value.length === 5) {
        const [hours, minutes] = value.split(':');
        if(parseInt(hours,10) > 23 || parseInt(minutes,10) > 59) {
-        // Invalid time, don't update or show error
         return;
        }
     }
@@ -134,7 +131,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
                     placeholder="e.g., 16" 
                     {...field} 
                     onChange={e => field.onChange(e.target.value === '' ? '' : parseInt(e.target.value, 10))} 
-                    value={field.value === undefined || field.value === null ? '' : field.value}
+                    value={field.value === undefined || field.value === null || field.value === '' ? '' : Number(field.value)}
                   />
                 </FormControl>
                 <FormMessage />
@@ -166,7 +163,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
                 <Input placeholder="e.g., GCSE Maths, Physics, Chemistry or IB HL subjects" {...field} />
               </FormControl>
               <FormDescription>
-                List main subjects or curriculum name.
+                List main subjects or curriculum name you need to study for.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -178,7 +175,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
           name="examDate"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Nearest Exam Date</FormLabel>
+              <FormLabel>Nearest Major Exam Date</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -203,7 +200,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
                     mode="single"
                     selected={field.value}
                     onSelect={field.onChange}
-                    disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1)) } // Disable past dates
+                    disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1)) } 
                     initialFocus
                   />
                 </PopoverContent>
@@ -252,6 +249,30 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
 
         <FormField
           control={form.control}
+          name="homeworkDetails"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center">
+                <BookOpenCheck className="mr-2 h-5 w-5 text-primary" />
+                Homework Details
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="e.g., Math: Algebra worksheet (1 hour), History: Read Chapter 5 & answer questions (1.5 hours), Science: Lab report due Friday (3 hours)"
+                  className="resize-none min-h-[120px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                List current homework: subject, specific task, and estimated time to complete. Be as specific as possible.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="commitments"
           render={({ field }) => (
             <FormItem>
@@ -264,7 +285,7 @@ export function StudyPlanForm({ onGeneratePlan, isLoading, initialData }: StudyP
                 />
               </FormControl>
               <FormDescription>
-                Include times for regular commitments outside of school.
+                Include times for regular commitments outside of school and homework.
               </FormDescription>
               <FormMessage />
             </FormItem>
