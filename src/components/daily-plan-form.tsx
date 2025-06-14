@@ -1,10 +1,11 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon, Loader2, Info, BookOpenCheck, ListChecks } from 'lucide-react';
+import { CalendarIcon, Loader2, Info, BookOpenCheck, ListChecks, Brain } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -41,7 +42,8 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
   const form = useForm<DailyInputsFormData>({
     resolver: zodResolver(DailyInputsSchema),
     defaultValues: {
-      currentDate: new Date(), // Default to today
+      currentDate: new Date(), 
+      topicsCoveredToday: '',
       commitmentsToday: '',
       homeworkDetailsToday: '',
     },
@@ -56,7 +58,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
         if (parsedData.currentDate && typeof parsedData.currentDate === 'string') {
           parsedData.currentDate = new Date(parsedData.currentDate);
         } else if (!parsedData.currentDate) {
-          parsedData.currentDate = new Date(); // Ensure a date is always present
+          parsedData.currentDate = new Date(); 
         }
         form.reset(parsedData);
       }
@@ -69,7 +71,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
     if (!isMounted) return;
     const subscription = form.watch((value) => {
       try {
-        // Store currentDate as ISO string to avoid issues with Date object in JSON
+        
         const dataToSave = {
             ...value,
             currentDate: value.currentDate ? value.currentDate.toISOString() : new Date().toISOString(),
@@ -90,7 +92,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
   if (!isMounted) {
     return (
       <div className="space-y-4">
-        {[...Array(3)].map((_, i) => (
+        {[...Array(4)].map((_, i) => ( // Increased for new field
           <div key={i} className="space-y-2">
             <div className="h-4 bg-muted rounded w-1/4 animate-pulse"></div>
             <div className="h-10 bg-muted rounded w-full animate-pulse"></div>
@@ -135,12 +137,34 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
                     selected={field.value}
                     onSelect={field.onChange}
                     initialFocus
-                    // Optional: disable past dates
-                    // disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1)) } 
                   />
                 </PopoverContent>
               </Popover>
               <FormDescription>Select the date you want to plan for.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="topicsCoveredToday"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center">
+                <Brain className="mr-2 h-5 w-5 text-primary" />
+                Key Topics Covered in Class Today
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="e.g., Math: Introduction to Trigonometry, History: Chapter 7 discussion on The Revolution, Science: Lab on Photosynthesis."
+                  className="resize-none min-h-[100px]"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                Briefly note main concepts or chapters taught today. This helps AI focus your review.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

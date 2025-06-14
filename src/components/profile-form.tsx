@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format, parseISO } from 'date-fns';
-import { CalendarIcon, Info, Save, Clock } from 'lucide-react';
+import { CalendarIcon, Info, Save, Clock, Palette } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -21,6 +21,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Popover,
   PopoverContent,
@@ -48,6 +49,7 @@ export function ProfileForm() {
       schoolEndTime: '15:00',
       earlyMorningStudy: false,
       commuteTime: '',
+      hobbies: '',
     },
   });
 
@@ -107,7 +109,7 @@ export function ProfileForm() {
   if (!isMounted) {
     return (
       <div className="space-y-4">
-        {[...Array(7)].map((_, i) => ( // Increased array size for new field
+        {[...Array(8)].map((_, i) => ( 
           <div key={i} className="space-y-2">
             <div className="h-4 bg-muted rounded w-1/4 animate-pulse"></div>
             <div className="h-10 bg-muted rounded w-full animate-pulse"></div>
@@ -264,6 +266,31 @@ export function ProfileForm() {
               </FormControl>
               <FormDescription>
                 Approximate round-trip time spent commuting to/from school, if applicable.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="hobbies"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="flex items-center">
+                <Palette className="mr-2 h-5 w-5 text-primary" />
+                Hobbies &amp; Leisure Activities
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="e.g., Piano practice (30 mins), Read a book (1 hour), Basketball (1.5 hours on Tue/Thu)"
+                  className="resize-none min-h-[80px]"
+                  {...field}
+                  value={field.value ?? ''}
+                />
+              </FormControl>
+              <FormDescription>
+                List any hobbies or leisure activities and how much time you'd like for them. The AI will try to fit them in.
               </FormDescription>
               <FormMessage />
             </FormItem>
