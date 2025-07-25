@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/tooltip"
 
 const colorThemes = [
+    { name: 'orange', label: 'Burnt Orange', color: "hsl(18 81% 42%)" },
     { name: 'purple', label: 'Purple', color: "hsl(259 84% 71%)" },
     { name: 'blue', label: 'Blue', color: "hsl(217.2 91.2% 59.8%)" },
     { name: 'red', label: 'Red', color: "hsl(0 84% 60%)" },
@@ -115,3 +116,5 @@ export function ThemeSwitcher() {
     </DropdownMenu>
   )
 }
+
+    

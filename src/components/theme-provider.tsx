@@ -4,7 +4,7 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from "react"
 
 export type Theme = "light" | "dark";
-export type ColorTheme = "purple" | "blue" | "red" | "yellow" | "black" | "white";
+export type ColorTheme = "orange" | "purple" | "blue" | "red" | "yellow" | "black" | "white";
 export type DoodleTheme = "none" | "circles" | "squares" | "triangles" | "crosses";
 
 interface ThemeProviderState {
@@ -23,7 +23,7 @@ const LOCAL_STORAGE_KEY_THEME = "planrTheme";
 export function ThemeProvider({
   children,
   defaultTheme = "light",
-  defaultColorTheme = "purple",
+  defaultColorTheme = "orange",
   defaultDoodleTheme = "none",
 }: {
   children: React.ReactNode
@@ -57,17 +57,15 @@ export function ThemeProvider({
     root.classList.add(theme);
 
     // Handle color theme
-    const colorThemes = ["theme-purple", "theme-blue", "theme-red", "theme-yellow", "theme-black", "theme-white"];
+    const colorThemes = ["theme-orange", "theme-purple", "theme-blue", "theme-red", "theme-yellow", "theme-black", "theme-white"];
     root.classList.remove(...colorThemes);
     root.classList.add(`theme-${colorTheme}`);
 
     // Handle doodle theme
     const doodleClasses = ["doodle-circles", "doodle-squares", "doodle-triangles", "doodle-crosses"];
-    document.body.classList.remove(...doodleClasses);
+    root.classList.remove(...doodleClasses);
     if (doodleTheme !== "none") {
-      document.body.classList.add(`doodle-${doodleTheme}`);
-    } else {
-      document.body.style.backgroundImage = '';
+      root.classList.add(`doodle-${doodleTheme}`);
     }
 
     try {
@@ -101,3 +99,5 @@ export const useTheme = () => {
   }
   return context;
 }
+
+    
