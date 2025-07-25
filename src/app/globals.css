@@ -8,23 +8,23 @@ body {
 
 @layer base {
   :root {
-    --background: 16 20% 95%; /* Very light, almost white shade */
-    --foreground: 16 10% 10%; /* Dark, near-black for text */
+    --background: 16 78% 36%; /* The base color #a53a13 for background */
+    --foreground: 16 5% 95%; /* Very light, almost white for text on dark background */
 
-    --card: 16 20% 100%; /* White for cards */
-    --card-foreground: 16 10% 10%;
+    --card: 16 78% 30%; /* Slightly darker shade for cards */
+    --card-foreground: 16 5% 95%;
 
-    --popover: 16 20% 100%;
-    --popover-foreground: 16 10% 10%;
+    --popover: 16 78% 25%;
+    --popover-foreground: 16 5% 95%;
 
-    --primary: 16 78% 36%; /* The base color #a53a13 */
-    --primary-foreground: 16 0% 100%; /* White text on primary */
+    --primary: 16 20% 95%; /* Very light, almost white shade for primary actions */
+    --primary-foreground: 16 78% 20%; /* Dark text on primary buttons */
 
     --secondary: 16 30% 85%; /* Lighter, less saturated shade */
     --secondary-foreground: 16 78% 20%; /* Darker shade for text */
 
-    --muted: 16 20% 90%; /* Light gray shade */
-    --muted-foreground: 16 5% 45%;
+    --muted: 16 78% 45%; /* A slightly lighter shade of the background */
+    --muted-foreground: 16 5% 85%; /* Lighter text for muted content */
 
     --accent: 16 70% 50%; /* A brighter, more saturated accent */
     --accent-foreground: 16 0% 100%; /* White text on accent */
@@ -32,9 +32,9 @@ body {
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 16 20% 85%; /* Light border color */
-    --input: 16 20% 90%;
-    --ring: 16 78% 45%; /* A slightly lighter shade for focus rings */
+    --border: 16 78% 45%; /* Lighter border color */
+    --input: 16 78% 50%;
+    --ring: 16 20% 95%; /* A very light shade for focus rings */
     
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
