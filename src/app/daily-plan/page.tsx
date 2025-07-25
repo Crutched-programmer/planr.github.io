@@ -15,7 +15,7 @@ import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
-const LOCAL_STORAGE_KEY_PROFILE = 'studyZenProfileData';
+const LOCAL_STORAGE_KEY_PROFILE = 'planrProfileData';
 
 export default function DailyPlanPage() {
   const [profileData, setProfileData] = useState<ProfileFormData | null>(null);
@@ -231,7 +231,7 @@ export default function DailyPlanPage() {
         )}
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} StudyZen. Smart daily schedules for effective learning.
+        © {new Date().getFullYear()} Planr. Smart daily schedules for effective learning.
       </footer>
     </div>
   );

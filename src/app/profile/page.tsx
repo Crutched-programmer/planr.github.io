@@ -19,7 +19,7 @@ export default function ProfilePage() {
             Your Study Profile
           </h1>
           <p className="text-lg text-muted-foreground">
-            Keep this information updated to help StudyZen generate the most effective study plans for you.
+            Keep this information updated to help Planr generate the most effective study plans for you.
           </p>
         </section>
 
@@ -38,7 +38,7 @@ export default function ProfilePage() {
         </Card>
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} StudyZen. Manage your profile for smarter planning.
+        © {new Date().getFullYear()} Planr. Manage your profile for smarter planning.
       </footer>
     </div>
   );
