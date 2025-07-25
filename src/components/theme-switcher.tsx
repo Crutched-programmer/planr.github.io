@@ -18,14 +18,20 @@ import {
   DropdownMenuPortal,
   DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const colorThemes = [
-    { name: 'purple', label: 'Purple', color: "hsl(var(--theme-purple))" },
-    { name: 'blue', label: 'Blue', color: "hsl(var(--theme-blue))" },
-    { name: 'red', label: 'Red', color: "hsl(var(--theme-red))" },
-    { name: 'yellow', label: 'Yellow', color: "hsl(var(--theme-yellow))" },
-    { name: 'black', label: 'Black', color: "hsl(var(--theme-black))" },
-    { name: 'white', label: 'White', color: "hsl(var(--theme-white))" },
+    { name: 'purple', label: 'Purple', color: "hsl(259 84% 71%)" },
+    { name: 'blue', label: 'Blue', color: "hsl(217.2 91.2% 59.8%)" },
+    { name: 'red', label: 'Red', color: "hsl(0 84% 60%)" },
+    { name: 'yellow', label: 'Yellow', color: "hsl(48 96% 53%)" },
+    { name: 'black', label: 'Black', color: "hsl(0 0% 13%)" },
+    { name: 'white', label: 'White', color: "hsl(0 0% 98%)" },
 ];
 
 const doodleThemes = [
@@ -68,8 +74,8 @@ export function ThemeSwitcher() {
         
         <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-                <div className="w-4 h-4 rounded-full mr-2" style={{backgroundColor: `hsl(var(--primary))`}} />
-                <span>Accent Color</span>
+                <div className="w-4 h-4 rounded-full mr-2 border" style={{backgroundColor: `hsl(var(--primary))`}} />
+                <span>Color Theme</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
                 <DropdownMenuSubContent>
@@ -109,23 +115,3 @@ export function ThemeSwitcher() {
     </DropdownMenu>
   )
 }
-
-// Minimal Tooltip components for use in this file only
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
-import { cn } from "@/lib/utils"
-
-const TooltipProvider = TooltipPrimitive.Provider
-const Tooltip = TooltipPrimitive.Root
-const TooltipTrigger = TooltipPrimitive.Trigger
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <TooltipPrimitive.Content
-    ref={ref}
-    sideOffset={sideOffset}
-    className={cn("z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95", className)}
-    {...props}
-  />
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName

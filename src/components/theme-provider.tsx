@@ -51,25 +51,23 @@ export function ThemeProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
+
+    // Handle light/dark mode
     root.classList.remove("light", "dark");
     root.classList.add(theme);
 
-    const newPrimaryColor = getComputedStyle(root).getPropertyValue(`--theme-${colorTheme}`).trim();
-    if (newPrimaryColor) {
-      root.style.setProperty('--primary', newPrimaryColor);
-      
-      const isBlackOrWhite = colorTheme === 'black' || colorTheme === 'white';
-      if (isBlackOrWhite) {
-        root.style.setProperty('--primary-foreground', theme === 'dark' ? 'hsl(0 0% 13%)' : 'hsl(0 0% 98%)');
-      } else {
-         root.style.setProperty('--primary-foreground', `${colorTheme} 80% 15%`);
-      }
-    }
+    // Handle color theme
+    const colorThemes = ["theme-purple", "theme-blue", "theme-red", "theme-yellow", "theme-black", "theme-white"];
+    root.classList.remove(...colorThemes);
+    root.classList.add(`theme-${colorTheme}`);
 
+    // Handle doodle theme
     const doodleClasses = ["doodle-circles", "doodle-squares", "doodle-triangles", "doodle-crosses"];
-    root.classList.remove(...doodleClasses);
+    document.body.classList.remove(...doodleClasses);
     if (doodleTheme !== "none") {
-      root.classList.add(`doodle-${doodleTheme}`);
+      document.body.classList.add(`doodle-${doodleTheme}`);
+    } else {
+      document.body.style.backgroundImage = '';
     }
 
     try {
