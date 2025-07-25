@@ -1,6 +1,7 @@
 import { GraduationCap, UserCircle, CalendarDays } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { ThemeSwitcher } from '@/components/theme-switcher';
 
 export function SiteHeader() {
   return (
@@ -26,6 +27,10 @@ export function SiteHeader() {
             </Link>
           </Button>
         </nav>
+
+        <div className="flex items-center">
+            <ThemeSwitcher />
+        </div>
       </div>
     </header>
   );

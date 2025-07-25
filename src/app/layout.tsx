@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { Inter } from 'next/font/google'; // Example, if you want to use Inter
-
-// If you are using PT Sans globally from globals.css, you might not need to load it here again.
-// However, Next/font is the recommended way for performance.
-// Let's assume PT Sans is set up in globals.css as per existing code and we use a variable for it.
-// For this example, I'll define a font variable for PT Sans.
 import { PT_Sans } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const ptSans = PT_Sans({
   subsets: ['latin'],
   weight: ['400', '700'],
-  variable: '--font-pt-sans', // CSS variable for PT Sans
+  variable: '--font-pt-sans',
 });
 
 
@@ -28,13 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${ptSans.variable}`}>
-      <head>
-        {/* Removed direct Google Fonts link, relying on next/font or existing globals.css setup */}
-      </head>
+      <head />
       <body className="font-body antialiased min-h-screen flex flex-col bg-background text-foreground">
-        {/* font-body should map to --font-pt-sans if set in tailwind.config.ts */}
-        {children}
-        <Toaster />
+        <ThemeProvider>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
