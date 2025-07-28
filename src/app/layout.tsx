@@ -22,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${ptSans.variable}`}>
+    <html lang="en" suppressHydrationWarning>
       <head />
-      <body className="font-body antialiased min-h-screen flex flex-col bg-background text-foreground">
+      <body className={`${ptSans.variable} font-body antialiased min-h-screen flex flex-col text-foreground`}>
         <ThemeProvider>
           {children}
           <Toaster />
