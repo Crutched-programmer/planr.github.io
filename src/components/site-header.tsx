@@ -1,4 +1,4 @@
-import { GraduationCap, UserCircle, CalendarDays } from 'lucide-react';
+import { GraduationCap, UserCircle, CalendarDays, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ThemeSwitcher } from '@/components/theme-switcher';
@@ -24,6 +24,12 @@ export function SiteHeader() {
             <Link href="/daily-plan" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               <CalendarDays className="mr-1 h-4 w-4" />
               Daily Plan
+            </Link>
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/quiz" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
+              <BrainCircuit className="mr-1 h-4 w-4" />
+              Quiz Me
             </Link>
           </Button>
         </nav>
