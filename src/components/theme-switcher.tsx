@@ -2,7 +2,7 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, Palette, Check, Circle, Square, Triangle, Plus } from "lucide-react"
+import { Moon, Sun, Palette, Check } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 
 import { Button } from "@/components/ui/button"
@@ -35,17 +35,8 @@ const colorThemes = [
     { name: 'white', label: 'White', color: "hsl(0 0% 98%)" },
 ];
 
-const doodleThemes = [
-    { name: 'none', label: 'None', icon: Plus },
-    { name: 'circles', label: 'Circles', icon: Circle },
-    { name: 'squares', label: 'Squares', icon: Square },
-    { name: 'triangles', label: 'Triangles', icon: Triangle },
-    { name: 'crosses', label: 'Crosses', icon: Plus },
-];
-
-
 export function ThemeSwitcher() {
-  const { theme, setTheme, colorTheme, setColorTheme, doodleTheme, setDoodleTheme } = useTheme()
+  const { theme, setTheme, colorTheme, setColorTheme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -90,31 +81,7 @@ export function ThemeSwitcher() {
                 </DropdownMenuSubContent>
             </DropdownMenuPortal>
         </DropdownMenuSub>
-
-        <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-                <Triangle className="mr-2 h-4 w-4" />
-                <span>Background Doodle</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                     {doodleThemes.map((dt) => {
-                         const Icon = dt.icon;
-                         return (
-                            <DropdownMenuItem key={dt.name} onClick={() => setDoodleTheme(dt.name as any)}>
-                                <Icon className="mr-2 h-4 w-4" />
-                                <span>{dt.label}</span>
-                                {doodleTheme === dt.name && <Check className="ml-auto h-4 w-4" />}
-                            </DropdownMenuItem>
-                         )
-                    })}
-                </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-        </DropdownMenuSub>
-
       </DropdownMenuContent>
     </DropdownMenu>
   )
 }
-
-    
