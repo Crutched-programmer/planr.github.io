@@ -1,10 +1,11 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    background-color: hsl(var(--background));
+    background-color: hsl(var(--accent) / 0.1); /* Apply a very subtle tint */
   }
   
   html.doodle-circles, html.doodle-squares, html.doodle-triangles, html.doodle-crosses {
@@ -252,5 +253,3 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
-
-    
