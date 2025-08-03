@@ -59,7 +59,7 @@
     --accent: 18 81% 85%; --accent-foreground: 18 90% 15%;
     --border: 18 81% 88%; --input: 18 81% 88%; --ring: 18 81% 42%;
  }
-  .dark .theme-orange {
+  .dark.theme-orange {
     --background: 18 90% 10%; --foreground: 18 80% 95%;
     --card: 18 85% 12%; --card-foreground: 18 80% 95%;
     --popover: 18 90% 10%; --popover-foreground: 18 80% 95%;
@@ -80,7 +80,7 @@
     --accent: 240 4% 89%; --accent-foreground: 240 5% 34%;
     --border: 240 6% 90%; --input: 240 6% 90%; --ring: 259 84% 71%;
  }
-  .dark .theme-purple {
+  .dark.theme-purple {
     --background: 240 6% 10%; --foreground: 0 0% 98%;
     --card: 240 4% 12%; --card-foreground: 0 0% 98%;
     --popover: 240 6% 10%; --popover-foreground: 0 0% 98%;
@@ -101,7 +101,7 @@
     --accent: 210 40% 94%; --accent-foreground: 222.2 47.4% 11.2%;
     --border: 214.3 31.8% 91.4%; --input: 214.3 31.8% 91.4%; --ring: 217.2 91.2% 59.8%;
  }
-  .dark .theme-blue {
+  .dark.theme-blue {
     --background: 222.2 47.4% 11.2%; --foreground: 210 40% 98%;
     --card: 222.2 47.4% 11.2%; --card-foreground: 210 40% 98%;
     --popover: 222.2 47.4% 11.2%; --popover-foreground: 210 40% 98%;
@@ -122,7 +122,7 @@
     --accent: 0 60% 90%; --accent-foreground: 0 50% 15%;
     --border: 0 50% 88%; --input: 0 50% 88%; --ring: 0 84% 60%;
  }
-  .dark .theme-red {
+  .dark.theme-red {
     --background: 0 50% 12%; --foreground: 0 0% 98%;
     --card: 0 45% 15%; --card-foreground: 0 0% 98%;
     --popover: 0 50% 12%; --popover-foreground: 0 0% 98%;
@@ -143,7 +143,7 @@
     --accent: 45 70% 90%; --accent-foreground: 35 50% 15%;
     --border: 45 60% 88%; --input: 45 60% 88%; --ring: 48 96% 53%;
  }
-  .dark .theme-yellow {
+  .dark.theme-yellow {
     --background: 40 50% 10%; --foreground: 45 50% 95%;
     --card: 40 45% 12%; --card-foreground: 45 50% 95%;
     --popover: 40 50% 10%; --popover-foreground: 45 50% 95%;
@@ -164,7 +164,7 @@
     --accent: 0 0% 90%; --accent-foreground: 0 0% 13%;
     --border: 0 0% 88%; --input: 0 0% 88%; --ring: 0 0% 13%;
  }
-  .dark .theme-black {
+  .dark.theme-black {
     --background: 0 0% 13%; --foreground: 0 0% 98%;
     --card: 0 0% 18%; --card-foreground: 0 0% 98%;
     --popover: 0 0% 13%; --popover-foreground: 0 0% 98%;
@@ -185,7 +185,7 @@
     --accent: 0 0% 25%; --accent-foreground: 0 0% 98%;
     --border: 0 0% 22%; --input: 0 0% 22%; --ring: 0 0% 98%;
  }
-  .dark .theme-white {
+  .dark.theme-white {
     --background: 0 0% 97%; --foreground: 0 0% 13%;
     --card: 0 0% 100%; --card-foreground: 0 0% 13%;
     --popover: 0 0% 100%; --popover-foreground: 0 0% 13%;
