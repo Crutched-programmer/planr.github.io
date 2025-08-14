@@ -209,7 +209,12 @@
 
 @layer utilities {
   .text-glow {
-    text-shadow: 0 0 8px hsl(var(--primary) / 0.8);
+    background: linear-gradient(
+      to right,
+      var(--primary),
+      var(--secondary),
+      var(--accent)
+  );
   }
 }
     

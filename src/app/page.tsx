@@ -15,7 +15,7 @@ export default function Home() {
         <section className="mb-12 text-center">
           <h1 className="text-5xl font-bold mb-6 font-headline text-primary flex items-center justify-center">
             <Sparkles className="w-12 h-12 mr-4 text-accent" />
-            Welcome to <span className="ml-2 text-glow">Planr</span>
+            Welcome to <span className="text-glow">Planr</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Your personal AI study planner. Optimize your learning by creating balanced daily study schedules tailored to your needs.
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} Made with 💖. Planr
+        Made with 💖. Planr
       </footer>
     </div>
   );

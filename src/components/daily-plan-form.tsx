@@ -153,7 +153,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
             <FormItem>
               <FormLabel className="flex items-center">
                 <Brain className="mr-2 h-5 w-5 text-primary" />
-                Key Topics Covered in Class Today
+                What were the key topics covered in class today/yesterday?
               </FormLabel>
               <FormControl>
                 <Textarea
@@ -163,7 +163,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
                 />
               </FormControl>
               <FormDescription>
-                Briefly note main concepts or chapters taught today. This helps AI focus your review.
+                Briefly note main concepts or chapters taught today. 
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -227,10 +227,10 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
           {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Generating Daily Plan...
+              Timetable on the way ...
             </>
           ) : (
-            'Generate Daily Plan'
+            'Generate My Timetable!'
           )}
         </Button>
       </form>

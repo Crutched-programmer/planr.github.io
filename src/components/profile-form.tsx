@@ -62,23 +62,26 @@ export function ProfileForm() {
         if (parsedData.examDate && typeof parsedData.examDate === 'string') {
           parsedData.examDate = parseISO(parsedData.examDate); 
         }
-        
-        if (parsedData.age !== undefined && parsedData.age !== null && parsedData.age !== '') {
-            parsedData.age = Number(parsedData.age);
-        } else {
-            parsedData.age = undefined; 
-        }
+        // Allow any value for age, including characters. Zod validation handles type coercion later if necessary.
+        // No specific check needed here before resetting the form.
         form.reset(parsedData);
       }
     } catch (error) {
-      console.error("Failed to load profile data from localStorage", error);
+      if (error instanceof SyntaxError) {
+        console.error("Failed to parse profile data from localStorage. Data might be corrupted.", error);
+        toast({
+          variant: "destructive",
+          title: "Load Error",
+          description: "Could not load saved profile data. Data might be corrupted.",
+        });
+      } else {
+        console.error("Failed to load profile data from localStorage", error);
       toast({
-        variant: "destructive",
         title: "Load Error",
         description: "Could not load saved profile data.",
       });
     }
-  }, [form, toast]); 
+  } [form, toast]; 
 
   const onSubmit = (data: ProfileFormData) => {
     try {
