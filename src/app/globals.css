@@ -223,7 +223,6 @@
     );
     background-size: 200% auto;
     filter: drop-shadow(0 0 0.75rem hsl(var(--primary) / 0.5));
-    animation: gradient-flow 8s linear infinite;
   }
 }
     
