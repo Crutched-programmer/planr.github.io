@@ -214,16 +214,28 @@
 @layer utilities {
   .text-glow {
     @apply bg-clip-text text-transparent;
+    background-size: 200% auto;
+    filter: drop-shadow(0 0 0.75rem hsl(var(--primary) / 0.5));
+    /* Dark gradient for light mode */
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--primary) / 1),
+      hsl(var(--muted-foreground)),
+      hsl(var(--card-foreground)),
+      hsl(var(--primary) / 1)
+    );
+  }
+  .dark .text-glow {
+    /* Light gradient for dark mode */
     background-image: linear-gradient(
       to right,
       hsl(var(--primary)),
-      hsl(var(--accent)),
-      hsl(var(--secondary)),
+      hsl(var(--accent-foreground)),
+      hsl(var(--secondary-foreground)),
       hsl(var(--primary))
     );
-    background-size: 200% auto;
-    filter: drop-shadow(0 0 0.75rem hsl(var(--primary) / 0.5));
   }
 }
     
     
+
