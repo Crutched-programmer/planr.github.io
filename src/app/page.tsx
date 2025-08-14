@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from 'react';
@@ -13,11 +14,11 @@ export default function Home() {
       <SiteHeader />
       <main className="flex-1 container mx-auto px-4 py-8">
         <section className="mb-12 text-center">
-          <h1 className="text-5xl font-bold mb-6 font-headline text-primary flex items-center justify-center">
-            <Sparkles className="w-12 h-12 mr-4 text-accent" />
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline text-primary flex items-center justify-center flex-wrap">
+            <Sparkles className="w-10 h-10 md:w-12 md:h-12 mr-4 text-accent" />
             Welcome to <span className="text-glow ml-3 animate-gradient-flow">Planr</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Your personal AI study planner. Optimize your learning by creating balanced daily study schedules tailored to your needs.
           </p>
         </section>
