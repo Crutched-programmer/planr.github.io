@@ -214,7 +214,7 @@
 @layer utilities {
   .text-glow {
     @apply bg-clip-text text-transparent;
-    background-size: 200% auto;
+    background-size: 300% auto;
     filter: drop-shadow(0 0 0.75rem hsl(var(--primary) / 0.5));
     /* Dark gradient for light mode */
     background-image: linear-gradient(
@@ -238,4 +238,3 @@
 }
     
     
-

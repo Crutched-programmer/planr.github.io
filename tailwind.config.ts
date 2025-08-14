@@ -97,7 +97,7 @@ export default {
         },
         'gradient-flow': {
           '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '200% 50%' },
+          '100%': { backgroundPosition: '300% 50%' },
         },
       },
       animation: {
