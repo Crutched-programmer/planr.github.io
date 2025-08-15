@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-pt-sans)', 'sans-serif'], // Use CSS variable from next/font
-        headline: ['var(--font-pt-sans)', 'sans-serif'], // Use CSS variable
+        body: ['var(--font-inter)', 'sans-serif'], 
+        headline: ['var(--font-inter)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -95,15 +95,10 @@ export default {
             height: '0',
           },
         },
-        'gradient-flow': {
-          '0%': { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '300% 50%' },
-        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient-flow': 'gradient-flow 4s linear infinite',
       },
     },
   },

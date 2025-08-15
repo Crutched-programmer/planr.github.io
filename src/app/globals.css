@@ -9,7 +9,7 @@
   }
   
   body {
-    font-family: var(--font-body), sans-serif;
+    font-family: var(--font-inter), sans-serif;
   }
 
   :root {
@@ -226,22 +226,6 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
-
-@layer utilities {
-  .text-glow {
-    @apply bg-clip-text text-transparent;
-    background-size: 300% auto;
-    filter: drop-shadow(0 0 10rem hsl(var(--primary)));
-    background-image: linear-gradient(
-      to right,
-      hsl(var(--primary-dark)),
-      hsl(var(--primary)),
-      hsl(var(--primary-light)),
-      hsl(var(--primary)),
-      hsl(var(--primary-dark))
-    );
-  }
-}
     
     
 
@@ -250,3 +234,4 @@
     
 
     
+
