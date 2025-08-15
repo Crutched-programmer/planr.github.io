@@ -153,7 +153,7 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
             <FormItem>
               <FormLabel className="flex items-center">
                 <Brain className="mr-2 h-5 w-5 text-primary" />
-                What were the key topics covered in class today/yesterday?
+                What were the key topics covered in class?
               </FormLabel>
               <FormControl>
                 <Textarea

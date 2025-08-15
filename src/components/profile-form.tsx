@@ -72,16 +72,17 @@ export function ProfileForm() {
         toast({
           variant: "destructive",
           title: "Load Error",
-          description: "Could not load saved profile data. Data might be corrupted.",
+          description: "Could not load saved profile data. Data might be screwed up.",
         });
       } else {
         console.error("Failed to load profile data from localStorage", error);
-      toast({
-        title: "Load Error",
-        description: "Could not load saved profile data.",
-      });
+        toast({
+          title: "Load Error",
+          description: "Could not load saved profile data. Maybe reload the site?",
+        });
+      }
     }
-  } [form, toast]; 
+  }, [form, toast]); 
 
   const onSubmit = (data: ProfileFormData) => {
     try {
@@ -93,14 +94,14 @@ export function ProfileForm() {
       localStorage.setItem(LOCAL_STORAGE_KEY_PROFILE, JSON.stringify(dataToSave));
       toast({
         title: "Profile Saved!",
-        description: "Your profile information has been updated locally.",
+        description: "Your profile information has been updated locally. Yay!",
       });
     } catch (error) {
       console.error("Failed to save profile data to localStorage", error);
       toast({
         variant: "destructive",
         title: "Save Error",
-        description: "Could not save your profile data.",
+        description: "Could not save your profile data. Maybe reload the site?",
       });
     }
   };

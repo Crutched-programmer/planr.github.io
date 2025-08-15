@@ -15,8 +15,8 @@ export default function Home() {
       <main className="flex-1 container mx-auto px-4 py-8">
         <section className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline text-primary flex items-center justify-center flex-wrap gap-x-3">
-            <span>Welcome</span>
             <GraduationCap className="w-10 h-10 md:w-12 md:h-12" />
+            <span>Welcome</span>
             <span>to</span>
             <span className="text-glow animate-gradient-flow">Planr</span>
           </h1>
