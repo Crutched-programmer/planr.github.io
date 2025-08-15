@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, UserCircle, CalendarDays, ArrowRight, GraduationCap } from 'lucide-react';
+import { UserCircle, CalendarDays, ArrowRight, GraduationCap } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -15,7 +15,6 @@ export default function Home() {
       <main className="flex-1 container mx-auto px-4 py-8">
         <section className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline text-primary flex items-center justify-center flex-wrap gap-x-3">
-            <Sparkles className="w-10 h-10 md:w-12 md:h-12 text-accent" />
             <span>Welcome to</span>
             <span className="flex items-center">
               <GraduationCap className="w-10 h-10 md:w-12 md:h-12 mr-2" />
