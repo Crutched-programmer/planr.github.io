@@ -231,7 +231,7 @@
   .text-glow {
     @apply bg-clip-text text-transparent;
     background-size: 300% auto;
-    filter: drop-shadow(0 0 1rem hsl(var(--primary) / 0.2));
+    filter: drop-shadow(0 0 1.5rem hsl(var(--primary) / 0.4));
     background-image: linear-gradient(
       to right,
       hsl(var(--primary-dark)),
