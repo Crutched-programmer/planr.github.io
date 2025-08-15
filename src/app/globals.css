@@ -227,6 +227,15 @@
   }
 }
     
+@layer utilities {
+  .text-glow {
+    color: hsl(var(--primary));
+    filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
+  }
+  .icon-glow {
+    filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
+  }
+}
     
 
     
@@ -234,4 +243,5 @@
     
 
     
+
 

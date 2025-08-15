@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { SiteHeader } from '@/components/site-header';
 import { ProfileForm } from '@/components/profile-form';
@@ -12,7 +11,7 @@ export default function ProfilePage() {
       <main className="flex-1 container mx-auto px-4 py-8 max-w-2xl">
         <section className="mb-8 text-center">
           <div className="flex justify-center mb-4">
-            <UserCircle className="w-16 h-16 text-primary" />
+            <UserCircle className="w-16 h-16 text-primary icon-glow" />
           </div>
           <h1 className="text-3xl font-bold mb-2 font-headline text-primary">
             Your Study Profile

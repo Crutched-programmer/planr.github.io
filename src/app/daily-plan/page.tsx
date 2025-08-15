@@ -9,7 +9,7 @@ import { improveStudyPlan } from '@/ai/flows/improve-study-plan-flow';
 import type { ProfileFormData, DailyInputsFormData, CombinedStudyPlanInput, GenerateStudyPlanInput as AIPlanInput } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Sparkles, MessageSquareWarning, Loader2, Info, CalendarCheck2 } from 'lucide-react';
+import { Sparkles, MessageSquareWarning, Loader2, Info, CalendarDays } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { format, parseISO, isSaturday, isSunday } from 'date-fns';
 import Link from 'next/link';
@@ -186,7 +186,7 @@ export default function DailyPlanPage() {
       <main className="flex-1 container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-8 text-center">
            <div className="flex justify-center mb-4">
-            <CalendarCheck2 className="w-16 h-16 text-primary" />
+            <CalendarDays className="w-16 h-16 text-primary icon-glow" />
           </div>
           <h1 className="text-3xl font-bold mb-2 font-headline text-primary">
             Plan Your Day
@@ -239,5 +239,3 @@ export default function DailyPlanPage() {
     </div>
   );
 }
-
-    
