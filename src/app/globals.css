@@ -215,26 +215,18 @@
   .text-glow {
     @apply bg-clip-text text-transparent;
     background-size: 300% auto;
-    filter: drop-shadow(0 0 10rem hsl(var(--primary) / 0.01));
-    /* Dark gradient for light mode */
+    filter: drop-shadow(0 0 1rem hsl(var(--primary) / 0.2));
     background-image: linear-gradient(
       to right,
-      hsl(var(--primary) / 1),
-      hsl(from var(--primary) h calc(h + 20) s l),
-      hsl(from var(--primary) h calc(h - 20) s l),
-      hsl(var(--primary) / 1)
-    );
-  }
-  .dark .text-glow {
-    /* Light gradient for dark mode */
-    background-image: linear-gradient(
-      to right,
-      hsl(from var(--primary) h s calc(l + 10)),
-      hsl(from var(--primary) h calc(h + 20) s calc(l + 5)),
-      hsl(from var(--primary) h calc(h - 20) s calc(l + 5)),
-      hsl(from var(--primary) h s calc(l + 10))
+      hsl(var(--primary)),
+      hsl(var(--accent)),
+      hsl(var(--secondary)),
+      hsl(var(--accent)),
+      hsl(var(--primary))
     );
   }
 }
     
+    
+
     
