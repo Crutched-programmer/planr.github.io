@@ -215,13 +215,13 @@
   .text-glow {
     @apply bg-clip-text text-transparent;
     background-size: 300% auto;
-    filter: drop-shadow(0 0 0.75rem hsl(var(--primary) / 0.5));
+    filter: drop-shadow(0 0 10rem hsl(var(--primary) / 0.01));
     /* Dark gradient for light mode */
     background-image: linear-gradient(
       to right,
       hsl(var(--primary) / 1),
-      hsl(var(--muted-foreground)),
-      hsl(var(--card-foreground)),
+      hsl(from var(--primary) h calc(h + 20) s l),
+      hsl(from var(--primary) h calc(h - 20) s l),
       hsl(var(--primary) / 1)
     );
   }
@@ -229,10 +229,10 @@
     /* Light gradient for dark mode */
     background-image: linear-gradient(
       to right,
-      hsl(var(--primary)),
-      hsl(var(--accent-foreground)),
-      hsl(var(--secondary-foreground)),
-      hsl(var(--primary))
+      hsl(from var(--primary) h s calc(l + 10)),
+      hsl(from var(--primary) h calc(h + 20) s calc(l + 5)),
+      hsl(from var(--primary) h calc(h - 20) s calc(l + 5)),
+      hsl(from var(--primary) h s calc(l + 10))
     );
   }
 }

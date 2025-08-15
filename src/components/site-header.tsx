@@ -18,13 +18,13 @@ export function SiteHeader() {
           <Button variant="ghost" asChild className="px-2 sm:px-4">
             <Link href="/profile" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               <UserCircle className="mr-0 sm:mr-1 h-4 w-4" />
-              <span className="hidden sm:inline">My Profile</span>
+              <span className="hidden sm:inline">Profile</span>
             </Link>
           </Button>
           <Button variant="ghost" asChild className="px-2 sm:px-4">
             <Link href="/daily-plan" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               <CalendarDays className="mr-0 sm:mr-1 h-4 w-4" />
-              <span className="hidden sm:inline">Daily Plan</span>
+              <span className="hidden sm:inline">Timetable</span>
             </Link>
           </Button>
           <Button variant="ghost" asChild className="px-2 sm:px-4">
