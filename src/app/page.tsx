@@ -1,6 +1,4 @@
 
-"use client";
-
 import React from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
