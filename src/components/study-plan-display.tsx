@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from 'react';
@@ -27,7 +28,7 @@ interface StudyPlanDisplayProps {
   planDate?: string; // Optional: to display the date of the plan
 }
 
-export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImproving, improvementError, planDate }: StudyPlanDisplayProps) {
+function StudyPlanDisplayComponent({ plan, originalInput, onImprovePlan, isImproving, improvementError, planDate }: StudyPlanDisplayProps) {
   const [feedback, setFeedback] = useState('');
 
   const handleImproveSubmit = () => {
@@ -93,3 +94,5 @@ export function StudyPlanDisplay({ plan, originalInput, onImprovePlan, isImprovi
     </Card>
   );
 }
+
+export const StudyPlanDisplay = React.memo(StudyPlanDisplayComponent);

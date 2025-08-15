@@ -34,7 +34,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const LOCAL_STORAGE_KEY_PROFILE = 'planrProfileData';
 
-export function ProfileForm() {
+function ProfileFormComponent() {
   const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
 
@@ -332,3 +332,5 @@ export function ProfileForm() {
     </Form>
   );
 }
+
+export const ProfileForm = React.memo(ProfileFormComponent);

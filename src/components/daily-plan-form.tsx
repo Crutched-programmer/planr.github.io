@@ -36,7 +36,7 @@ interface DailyPlanFormProps {
 const LOCAL_STORAGE_KEY_DAILY = 'planrDailyInputs';
 
 
-export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps) {
+function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   const form = useForm<DailyInputsFormData>({
@@ -237,3 +237,5 @@ export function DailyPlanForm({ onGeneratePlan, isLoading }: DailyPlanFormProps)
     </Form>
   );
 }
+
+export const DailyPlanForm = React.memo(DailyPlanFormComponent);
