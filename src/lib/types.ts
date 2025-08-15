@@ -47,6 +47,7 @@ export const CombinedStudyPlanInputSchema = ProfileFormFieldsSchema.extend({
   examDate: z.string().describe("The date of the upcoming major exam, YYYY-MM-DD."),
   // Add daily fields
   currentDate: z.string().describe("The date for which the plan is being generated, YYYY-MM-DD."),
+  isWeekend: z.boolean().describe("A flag to indicate if the current date is a weekend."),
   topicsCoveredToday: z.string().optional().describe("Briefly, what main topics/chapters were taught in your classes today? e.g., 'Math: Intro to Trigonometry, History: Chapter 7 - The Revolution'"),
   commitmentsToday: z.string().optional().describe("Commitments for today, including time slots (e.g., 'Guitar lesson 4-5 PM')."),
   homeworkDetailsToday: z.string().optional().describe("Homework for today: subject, task, estimated time, AND DEADLINE (e.g., 'Math: Algebra Ch3 (1hr, Due EOD), History: Essay outline (1.5hr, Due tomorrow)')."),
@@ -68,3 +69,5 @@ export type CombinedStudyPlanInput = z.infer<typeof CombinedStudyPlanInputSchema
 // Type for the AI Flow itself, matching src/ai/flows/generate-study-plan.ts
 // This is what the AI flow `generateStudyPlan` function expects.
 export type GenerateStudyPlanInput = CombinedStudyPlanInput;
+
+    
