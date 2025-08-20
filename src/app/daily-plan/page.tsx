@@ -186,7 +186,7 @@ export default function DailyPlanPage() {
       <main className="flex-1 container mx-auto px-4 py-8 max-w-3xl">
         <section className="mb-8 text-center">
            <div className="flex justify-center mb-4">
-            <CalendarDays className="w-16 h-16 text-primary icon-glow" />
+            <CalendarDays className="w-16 h-16 text-glow" />
           </div>
           <h1 className="text-3xl font-bold mb-2 font-headline text-primary">
             Plan Your Day
@@ -239,3 +239,5 @@ export default function DailyPlanPage() {
     </div>
   );
 }
+
+    

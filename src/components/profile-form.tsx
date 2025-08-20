@@ -42,7 +42,7 @@ function ProfileFormComponent() {
     resolver: zodResolver(ProfileDataSchema),
     defaultValues: {
       age: undefined, 
-      class: '',
+      class: 'Grade or Year',
       curriculum: '',
       examDate: undefined,
       schoolStartTime: '08:00',
@@ -184,7 +184,7 @@ function ProfileFormComponent() {
           name="examDate"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Next Major Exam Date (Approx.)</FormLabel>
+              <FormLabel>Next Major Exam / test  Date (Approx.)</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -198,7 +198,7 @@ function ProfileFormComponent() {
                       {field.value ? (
                         format(field.value, "PPP")
                       ) : (
-                        <span>Pick a date</span>
+                        <span>Pick the date</span>
                       )}
                       <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                     </Button>
@@ -225,7 +225,7 @@ function ProfileFormComponent() {
             name="schoolStartTime"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>School Start Time</FormLabel>
+                <FormLabel>When does School start?</FormLabel>
                 <FormControl>
                   <Input 
                     type="time" 
@@ -242,7 +242,7 @@ function ProfileFormComponent() {
             name="schoolEndTime"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>School End Time</FormLabel>
+                <FormLabel>When does School end?</FormLabel>
                 <FormControl>
                   <Input 
                     type="time" 

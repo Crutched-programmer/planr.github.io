@@ -229,7 +229,8 @@
     
 @layer utilities {
   .text-glow {
-    color: hsl(var(--primary));
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, hsl(var(--primary-light)), hsl(var(--primary)), hsl(var(--primary-dark)));
     filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
   }
   .icon-glow {
@@ -245,3 +246,6 @@
     
 
 
+
+
+    
