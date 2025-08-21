@@ -11,7 +11,7 @@ function SiteHeaderComponent() {
         <Link href="/" className="mr-2 sm:mr-6 flex items-center space-x-2 text-primary text-glow">
           <GraduationCap className="h-6 w-6" />
           <span className="font-bold hidden sm:inline-block font-headline">
-            Planr
+            StudyZen
           </span>
         </Link>
         <nav className="flex flex-1 items-center space-x-1 sm:space-x-2 lg:space-x-4">
@@ -44,5 +44,3 @@ function SiteHeaderComponent() {
 }
 
 export const SiteHeader = React.memo(SiteHeaderComponent);
-
-    

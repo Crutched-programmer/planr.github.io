@@ -15,12 +15,12 @@ interface ThemeProviderState {
 
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY_THEME = "planrTheme";
+const LOCAL_STORAGE_KEY_THEME = "studyZenTheme";
 
 export function ThemeProvider({
   children,
   defaultTheme = "light",
-  defaultColorTheme = "orange",
+  defaultColorTheme = "purple",
 }: {
   children: React.ReactNode
   defaultTheme?: Theme
