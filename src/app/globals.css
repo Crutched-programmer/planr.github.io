@@ -9,7 +9,7 @@
   }
   
   body {
-    font-family: var(--font-pt-sans), sans-serif;
+    font-family: var(--font-inter), sans-serif;
   }
 
   :root {
@@ -231,15 +231,15 @@
   .text-glow {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(to right, hsl(var(--primary-light)), hsl(var(--primary)), hsl(var(--primary-dark)), hsl(var(--primary)), hsl(var(--primary-light)));
-    filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
-    animation: gradient-flow 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px hsla(var(--primary), 0.8));
+    animation: gradient-flow 3s linear infinite;
     background-size: 200% auto;
   }
   .icon-glow {
     filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
   }
   .hard-glow {
-    filter: drop-shadow(0 0 20px hsla(var(--primary), 1));
+    filter: drop-shadow(0 0 30px hsla(var(--primary), 1));
   }
   .button-glow {
     box-shadow: 0 0 20px 2px hsla(var(--primary), 0.6);
@@ -250,11 +250,8 @@
   0% {
     background-position: 0% 50%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
   100% {
-    background-position: 0% 50%;
+    background-position: 200% 50%;
   }
 }
     
@@ -269,4 +266,5 @@
 
 
     
+
 
