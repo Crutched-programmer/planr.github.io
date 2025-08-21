@@ -13,8 +13,8 @@ const ptSans = PT_Sans({
 
 
 export const metadata: Metadata = {
-  title: 'StudyZen - Your Personal AI Study Planner',
-  description: 'Create personalized daily study plans with StudyZen, powered by AI. Balance your studies, commitments, and rest for optimal learning.',
+  title: 'Planr - Your Personal AI Study Planner',
+  description: 'Create personalized daily study plans with Planr, powered by AI. Balance your studies, commitments, and rest for optimal learning.',
 };
 
 export default function RootLayout({

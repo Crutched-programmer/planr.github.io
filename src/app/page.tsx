@@ -15,7 +15,7 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline flex items-center justify-center flex-wrap gap-x-2">
             Welcome to
             <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" />
-            <span className="text-glow">StudyZen</span>
+            <span className="text-glow">Planr</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Your personal AI study planner. Optimize your learning by creating balanced daily study schedules tailored to your needs.
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        Made with <span className='text-glow'>❤</span>. StudyZen
+        Made with <span className='text-glow'>❤</span>. Planr
       </footer>
     </div>
   );

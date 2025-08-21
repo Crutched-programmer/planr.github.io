@@ -9,9 +9,9 @@ function SiteHeaderComponent() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Link href="/" className="mr-2 sm:mr-6 flex items-center space-x-2 text-primary text-glow">
-          <GraduationCap className="h-6 w-6" />
+          <GraduationCap className="h-6 w-6 icon-glow" />
           <span className="font-bold hidden sm:inline-block font-headline">
-            StudyZen
+            Planr
           </span>
         </Link>
         <nav className="flex flex-1 items-center space-x-1 sm:space-x-2 lg:space-x-4">

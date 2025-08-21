@@ -15,7 +15,7 @@ interface ThemeProviderState {
 
 const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY_THEME = "studyZenTheme";
+const LOCAL_STORAGE_KEY_THEME = "planrTheme";
 
 export function ThemeProvider({
   children,

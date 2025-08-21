@@ -33,7 +33,7 @@ interface DailyPlanFormProps {
   isLoading: boolean;
 }
 
-const LOCAL_STORAGE_KEY_DAILY = 'studyZenDailyInputs';
+const LOCAL_STORAGE_KEY_DAILY = 'planrDailyInputs';
 
 
 function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProps) {

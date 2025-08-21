@@ -32,7 +32,7 @@ import type { ProfileFormData } from '@/lib/types';
 import { ProfileDataSchema } from '@/lib/types';
 import { useToast } from "@/hooks/use-toast";
 
-const LOCAL_STORAGE_KEY_PROFILE = 'studyZenProfileData';
+const LOCAL_STORAGE_KEY_PROFILE = 'planrProfileData';
 
 function ProfileFormComponent() {
   const [isMounted, setIsMounted] = useState(false);
