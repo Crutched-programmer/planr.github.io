@@ -230,8 +230,10 @@
 @layer utilities {
   .text-glow {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, hsl(var(--primary-light)), hsl(var(--primary)), hsl(var(--primary-dark)));
+    background-image: linear-gradient(to right, hsl(var(--primary-light)), hsl(var(--primary)), hsl(var(--primary-dark)), hsl(var(--primary)), hsl(var(--primary-light)));
     filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
+    animation: gradient-flow 5s ease-in-out infinite;
+    background-size: 200% auto;
   }
   .icon-glow {
     filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
@@ -241,6 +243,18 @@
   }
   .button-glow {
     box-shadow: 0 0 20px 2px hsla(var(--primary), 0.6);
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
     
@@ -255,3 +269,4 @@
 
 
     
+
