@@ -236,6 +236,12 @@
   .icon-glow {
     filter: drop-shadow(0 0 10px hsla(var(--primary), 0.8));
   }
+  .hard-glow {
+    filter: drop-shadow(0 0 20px hsla(var(--primary), 1));
+  }
+  .button-glow {
+    box-shadow: 0 0 20px 2px hsla(var(--primary), 0.6);
+  }
 }
     
 
