@@ -13,8 +13,8 @@ export default function Home() {
       <main className="flex-1 container mx-auto px-4 py-8">
         <section className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline flex items-center justify-center flex-wrap gap-x-2">
+          <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" />
             Welcome to
-            <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" />
             <span className="text-glow">Planr</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
