@@ -1,8 +1,10 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
+    allowedDevOrigins: ["6000-firebase-studio-*.cloudworkstations.dev"],
   },
   typescript: {
     ignoreBuildErrors: true,
