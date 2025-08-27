@@ -34,6 +34,7 @@ export type ProfileFormData = z.infer<typeof ProfileDataSchema>;
 // Schema for data that changes daily
 export const DailyInputsSchema = z.object({
   currentDate: z.date({ required_error: "Date for the plan is required."}),
+  isLeaveDay: z.boolean().default(false).describe("A flag to indicate if the current date is a leave day (no school)."),
   topicsCoveredToday: z.string().max(500, "Summary of topics covered in class is too long.").optional().describe("Briefly, what main topics/chapters were taught in your classes today? e.g., 'Math: Intro to Trigonometry, History: Chapter 7 - The Revolution'"),
   commitmentsToday: z.string().max(500, "Today's commitments description is too long").optional(),
   homeworkDetailsToday: z.string().max(1000, "Today's homework details are too long. Please be concise but include subject, task, estimated time, and deadline for each.").optional(),
@@ -47,7 +48,7 @@ export const CombinedStudyPlanInputSchema = ProfileFormFieldsSchema.extend({
   examDate: z.string().describe("The date of the upcoming major exam, YYYY-MM-DD."),
   // Add daily fields
   currentDate: z.string().describe("The date for which the plan is being generated, YYYY-MM-DD."),
-  isWeekend: z.boolean().describe("A flag to indicate if the current date is a weekend."),
+  isLeaveDay: z.boolean().describe("A flag to indicate if the current date is a leave day (like a weekend or holiday), meaning no school."),
   topicsCoveredToday: z.string().optional().describe("Briefly, what main topics/chapters were taught in your classes today? e.g., 'Math: Intro to Trigonometry, History: Chapter 7 - The Revolution'"),
   commitmentsToday: z.string().optional().describe("Commitments for today, including time slots (e.g., 'Guitar lesson 4-5 PM')."),
   homeworkDetailsToday: z.string().optional().describe("Homework for today: subject, task, estimated time, AND DEADLINE (e.g., 'Math: Algebra Ch3 (1hr, Due EOD), History: Essay outline (1.5hr, Due tomorrow)')."),

@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Sparkles, MessageSquareWarning, Loader2, Info, CalendarDays } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { format, parseISO, isSaturday, isSunday } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -73,14 +73,14 @@ export default function DailyPlanPage() {
     setOriginalCombinedInputForPlan(null);
     setCurrentPlanDate(undefined);
 
-    const isWeekend = isSaturday(dailyData.currentDate) || isSunday(dailyData.currentDate);
 
     const combinedInput: CombinedStudyPlanInput = {
       ...profileData,
       age: Number(profileData.age), // Ensure age is number
       examDate: format(profileData.examDate, 'yyyy-MM-dd'), // Format Date to string for AI
       currentDate: format(dailyData.currentDate, 'yyyy-MM-dd'), // Format Date to string for AI
-      isWeekend: isWeekend,
+      isLeaveDay: dailyData.isLeaveDay,
+      topicsCoveredToday: dailyData.topicsCoveredToday || "No specific topics were covered in class today.",
       commitmentsToday: dailyData.commitmentsToday || "No specific commitments listed for today.",
       homeworkDetailsToday: dailyData.homeworkDetailsToday || "No specific homework assignments listed for today.",
     };
@@ -240,3 +240,5 @@ export default function DailyPlanPage() {
     </div>
   );
 }
+
+    

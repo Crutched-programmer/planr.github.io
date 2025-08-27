@@ -2,13 +2,14 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { format } from 'date-fns';
-import { CalendarIcon, Loader2, Info, BookOpenCheck, ListChecks, Brain } from 'lucide-react';
+import { format, isSaturday, isSunday } from 'date-fns';
+import { CalendarIcon, Loader2, Info, BookOpenCheck, ListChecks, Brain, Moon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -43,12 +44,24 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
     resolver: zodResolver(DailyInputsSchema),
     defaultValues: {
       currentDate: new Date(), 
+      isLeaveDay: isSaturday(new Date()) || isSunday(new Date()),
       topicsCoveredToday: '',
       commitmentsToday: '',
       homeworkDetailsToday: '',
     },
   });
 
+  const currentDate = useWatch({
+    control: form.control,
+    name: 'currentDate',
+  });
+
+  useEffect(() => {
+    const isWeekend = isSaturday(currentDate) || isSunday(currentDate);
+    form.setValue('isLeaveDay', isWeekend, { shouldDirty: true });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDate]);
+  
   useEffect(() => {
     setIsMounted(true);
     try {
@@ -60,6 +73,11 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
         } else if (!parsedData.currentDate) {
           parsedData.currentDate = new Date(); 
         }
+
+        // Set default isLeaveDay based on loaded date
+        const isWeekend = isSaturday(parsedData.currentDate) || isSunday(parsedData.currentDate);
+        parsedData.isLeaveDay = parsedData.isLeaveDay ?? isWeekend;
+
         form.reset(parsedData);
       }
     } catch (error) {
@@ -92,7 +110,7 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
   if (!isMounted) {
     return (
       <div className="space-y-4">
-        {[...Array(4)].map((_, i) => ( // Increased for new field
+        {[...Array(5)].map((_, i) => (
           <div key={i} className="space-y-2">
             <div className="h-4 bg-muted rounded w-1/4 animate-pulse"></div>
             <div className="h-10 bg-muted rounded w-full animate-pulse"></div>
@@ -106,45 +124,70 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="currentDate"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date for Plan</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+          <FormField
+            control={form.control}
+            name="currentDate"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Date for Plan</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-full pl-3 text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? (
+                          format(field.value, "PPP")
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>Select the date you want to plan for.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="isLeaveDay"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm h-full justify-center">
                   <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        format(field.value, "PPP")
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
                   </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>Select the date you want to plan for.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      This is a leave day (no school)
+                    </FormLabel>
+                    <FormDescription>
+                      Weekends or holidays. AI will create a full-day plan.
+                    </FormDescription>
+                  </div>
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
@@ -163,7 +206,7 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
                 />
               </FormControl>
               <FormDescription>
-                Briefly note main concepts or chapters taught today. 
+                Briefly note main concepts or chapters taught today. This is not needed for leave days.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -239,3 +282,5 @@ function DailyPlanFormComponent({ onGeneratePlan, isLoading }: DailyPlanFormProp
 }
 
 export const DailyPlanForm = React.memo(DailyPlanFormComponent);
+
+    

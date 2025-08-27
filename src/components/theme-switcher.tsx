@@ -18,12 +18,6 @@ import {
   DropdownMenuPortal,
   DropdownMenuSubContent
 } from "@/components/ui/dropdown-menu"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 
 const colorThemes = [
     { name: 'orange', label: 'Burnt Orange', lightColor: "hsl(18 81% 42%)", darkColor: "hsl(18 90% 10%)" },
@@ -39,21 +33,12 @@ export function ThemeSwitcher() {
 
   return (
     <DropdownMenu>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Palette className="h-[1.2rem] w-[1.2rem]" />
-                <span className="sr-only">Toggle theme and appearance</span>
-              </Button>
-            </DropdownMenuTrigger>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Appearance</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon">
+          <Palette className="h-[1.2rem] w-[1.2rem]" />
+          <span className="sr-only">Toggle theme and appearance</span>
+        </Button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Appearance</DropdownMenuLabel>
         

@@ -29,7 +29,7 @@ const GenerateStudyPlanInputSchema = z.object({
   
   // Daily fields
   currentDate: z.string().describe('The specific date (YYYY-MM-DD) for which this daily plan is being generated.'),
-  isWeekend: z.boolean().describe('A flag indicating if the currentDate is a weekend (Saturday or Sunday).'),
+  isLeaveDay: z.boolean().describe('A flag indicating if the currentDate is a leave day (like a weekend or holiday), meaning no school.'),
   topicsCoveredToday: z.string().optional().describe("Main topics/chapters taught in class today (e.g., 'Math: Intro to Trigonometry, History: Chapter 7'). This can inform study session focus."),
   commitmentsToday: z
     .string()
@@ -61,8 +61,8 @@ const generateStudyPlanPrompt = ai.definePrompt({
 The plan MUST include A LOT OF DEDICATED STUDY TIME for general curriculum subjects, IN ADDITION to any homework. This study time should be DIVERSE and cover VARIOUS subjects from the student's curriculum.
 The plan MUST ensure AT LEAST 8 HOURS OF SLEEP.
 
-{{#if isWeekend}}
-This is a WEEKEND day ({{currentDate}}). There is NO SCHOOL. The plan should be for the entire day, from morning to night, balancing study, homework, and leisure.
+{{#if isLeaveDay}}
+This is a LEAVE day ({{currentDate}}), so there is NO SCHOOL. The plan should be for the entire day, from morning to night, balancing study, homework, and leisure.
 {{else}}
 This is a WEEKDAY. The detailed scheduling of activities should PRIMARILY FOCUS on the period AFTER school ends until bedtime. If early morning study is preferred, schedule that too.
 {{/if}}
@@ -72,7 +72,7 @@ Student Profile:
   Age: {{{age}}}
   Class/Grade: {{{class}}}
   Curriculum/Subjects for General Study: {{{curriculum}}}
-  {{#unless isWeekend}}
+  {{#unless isLeaveDay}}
   School Day: Starts at {{{schoolStartTime}}} and ends at {{{schoolEndTime}}}.
   Commute Time: {{{commuteTime}}}
   {{/unless}}
@@ -88,12 +88,12 @@ Today's Details (for {{currentDate}}):
 Instructions for Generating the Daily Plan for {{currentDate}}:
 1.  The plan MUST be for a single day: {{currentDate}}.
 2.  Acknowledge School & Commute (on weekdays): 
-    {{#if isWeekend}}
-    *   This is a weekend, so ignore school and commute times. Structure a productive yet balanced plan for the entire day.
+    {{#if isLeaveDay}}
+    *   This is a leave day (no school), so ignore school and commute times. Structure a productive yet balanced plan for the entire day.
     {{else}}
     *   Note the block of time for school ({{{schoolStartTime}}} to {{{schoolEndTime}}}) and {{{commuteTime}}}. The detailed scheduling of activities in the output plan should primarily start *after* the school day (plus commute home) and continue until bedtime.
     {{/if}}
-3.  Early Morning Study: If {{{earlyMorningStudy}}} is true, schedule a detailed study block (for homework or general curriculum) in the morning. On weekdays, this is before school.
+3.  Early Morning Study: If {{{earlyMorningStudy}}} is true and it's a weekday (not a leave day), schedule a detailed study block before school. On leave days, you can schedule study anytime in the morning.
 4.  Schedule Homework First, Considering Deadlines: Prioritize and schedule all specific tasks listed in "Homework to Complete Today" ({{{homeworkDetailsToday}}}). Ensure each task is explicitly mentioned with its subject, estimated time, and pay close attention to any mentioned DEADLINES to schedule them appropriately.
 5.  Incorporate Commitments: After scheduling homework, fit in any "Commitments Today" ({{{commitmentsToday}}}) into the schedule.
 6.  **Allocate A LOT OF DEDICATED AND DIVERSE STUDY TIME for General Curriculum Subjects:** This is CRITICALLY IMPORTANT and a PRIMARY GOAL. This study time is for general learning and revision of topics from {{{curriculum}}}, and is SEPARATE FROM and IN ADDITION TO any time spent on specific "Homework to Complete Today".
