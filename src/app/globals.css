@@ -26,39 +26,39 @@
   }
 
   :root {
-    /* Default Theme (Light Mode - Refined Purple) - Neumorphic/Skeuomorphic style */
-    --background: 250 20% 98%; --foreground: 250 10% 40%;
-    --card: 250 20% 98%; --card-foreground: 250 10% 40%;
-    --popover: 250 20% 96%; --popover-foreground: 250 10% 40%;
+    /* Default Theme (Light Mode - Vibrant Red) - Neumorphic/Skeuomorphic style */
+    --background: 0 0% 98%; --foreground: 0 0% 40%;
+    --card: 0 0% 98%; --card-foreground: 0 0% 40%;
+    --popover: 0 0% 96%; --popover-foreground: 0 0% 40%;
     
-    --primary: 259 80% 65%; --primary-foreground: 0 0% 100%;
-    --primary-light: 259 84% 81%; --primary-dark: 259 84% 61%;
+    --primary: 0 80% 65%; --primary-foreground: 0 0% 100%;
+    --primary-light: 0 84% 81%; --primary-dark: 0 84% 61%;
     
-    --secondary: 250 20% 94%; --secondary-foreground: 250 10% 30%;
-    --muted: 250 20% 94%; --muted-foreground: 250 10% 55%;
-    --accent: 250 20% 90%; --accent-foreground: 250 10% 20%;
+    --secondary: 0 0% 94%; --secondary-foreground: 0 0% 30%;
+    --muted: 0 0% 94%; --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 90%; --accent-foreground: 0 0% 20%;
     
-    --border: 250 20% 88%; 
-    --input: 250 20% 94%; 
-    --ring: 259 80% 65%;
+    --border: 0 0% 88%; 
+    --input: 0 0% 94%; 
+    --ring: 0 80% 65%;
   }
 
   .dark {
-    /* Default Dark Mode (Refined Purple) - Neumorphic/Skeuomorphic style */
-    --background: 250 10% 12%; --foreground: 250 10% 70%;
-    --card: 250 10% 12%; --card-foreground: 250 10% 70%;
-    --popover: 250 10% 10%; --popover-foreground: 250 10% 70%;
+    /* Default Dark Mode (Vibrant Red) - Neumorphic/Skeuomorphic style */
+    --background: 0 0% 12%; --foreground: 0 0% 70%;
+    --card: 0 0% 12%; --card-foreground: 0 0% 70%;
+    --popover: 0 0% 10%; --popover-foreground: 0 0% 70%;
     
-    --primary: 259 80% 65%; --primary-foreground: 0 0% 100%;
-    --primary-light: 259 84% 81%; --primary-dark: 259 84% 61%;
+    --primary: 0 80% 65%; --primary-foreground: 0 0% 100%;
+    --primary-light: 0 84% 81%; --primary-dark: 0 84% 61%;
     
-    --secondary: 250 10% 18%; --secondary-foreground: 250 10% 80%;
-    --muted: 250 10% 18%; --muted-foreground: 250 10% 55%;
-    --accent: 250 10% 22%; --accent-foreground: 250 10% 90%;
+    --secondary: 0 0% 18%; --secondary-foreground: 0 0% 80%;
+    --muted: 0 0% 18%; --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 22%; --accent-foreground: 0 0% 90%;
     
-    --border: 250 10% 22%; 
-    --input: 250 10% 18%; 
-    --ring: 259 80% 65%;
+    --border: 0 0% 22%; 
+    --input: 0 0% 18%; 
+    --ring: 0 80% 65%;
     
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;

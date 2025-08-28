@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 const colorThemes = [
-    { name: 'purple', label: 'Refined Purple', lightColor: "hsl(250 20% 98%)", darkColor: "hsl(250 10% 12%)" },
+    { name: 'red', label: 'Vibrant Red', lightColor: "hsl(0 0% 98%)", darkColor: "hsl(0 0% 12%)" },
 ];
 
 export function ThemeSwitcher() {
