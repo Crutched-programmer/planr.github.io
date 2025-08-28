@@ -1,3 +1,4 @@
+
 import { GraduationCap, UserCircle, CalendarDays, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -24,13 +25,13 @@ function SiteHeaderComponent() {
           <Button variant="ghost" asChild className="px-2 sm:px-4">
             <Link href="/daily-plan" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               <CalendarDays className="mr-0 sm:mr-1 h-4 w-4" />
-              <span className="hidden sm:inline">Timetable</span>
+              <span className="hidden sm:inline">Daily Plan</span>
             </Link>
           </Button>
           <Button variant="ghost" asChild className="px-2 sm:px-4">
             <Link href="/quiz" className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground">
               <BrainCircuit className="mr-0 sm:mr-1 h-4 w-4" />
-              <span className="hidden sm:inline">Quiz Me</span>
+              <span className="hidden sm:inline">Quiz</span>
             </Link>
           </Button>
         </nav>
@@ -44,3 +45,5 @@ function SiteHeaderComponent() {
 }
 
 export const SiteHeader = React.memo(SiteHeaderComponent);
+
+    

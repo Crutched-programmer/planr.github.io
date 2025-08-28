@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -18,7 +19,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['var(--font-inter)', 'sans-serif'], 
-        headline: ['var(--font-inter)', 'sans-serif'],
+        headline: ['var(--font-lexend-deca)', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -87,3 +88,5 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    

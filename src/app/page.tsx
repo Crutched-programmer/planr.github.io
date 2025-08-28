@@ -61,8 +61,10 @@ export default function Home() {
         </div>
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        Made with <span className='text-glow hard-glow'>❤</span>. Planr
+        © {new Date().getFullYear()} Planr. Smart daily schedules for effective learning.
       </footer>
     </div>
   );
 }
+
+    
