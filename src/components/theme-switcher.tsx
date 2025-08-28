@@ -20,12 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 const colorThemes = [
-    { name: 'orange', label: 'Burnt Orange', lightColor: "hsl(18 81% 42%)", darkColor: "hsl(18 90% 10%)" },
-    { name: 'purple', label: 'Purple', lightColor: "hsl(259 84% 71%)", darkColor: "hsl(240 6% 10%)" },
-    { name: 'blue', label: 'Blue', lightColor: "hsl(217.2 91.2% 59.8%)", darkColor: "hsl(222.2 47.4% 11.2%)" },
-    { name: 'red', label: 'Red', lightColor: "hsl(0 84% 60%)", darkColor: "hsl(0 50% 12%)" },
-    { name: 'yellow', label: 'Yellow', lightColor: "hsl(48 96% 53%)", darkColor: "hsl(40 50% 10%)" },
-    { name: 'black', label: 'Black', lightColor: "hsl(0 0% 13%)", darkColor: "hsl(0 0% 98%)" },
+    { name: 'purple', label: 'Refined Purple', lightColor: "hsl(250 20% 98%)", darkColor: "hsl(250 10% 12%)" },
 ];
 
 export function ThemeSwitcher() {
@@ -45,7 +40,7 @@ export function ThemeSwitcher() {
         <DropdownMenuSub>
             <DropdownMenuSubTrigger>
                 <Sun className="mr-2 h-4 w-4" />
-                <span>Light Themes</span>
+                <span>Light Theme</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
                 <DropdownMenuSubContent>
@@ -63,7 +58,7 @@ export function ThemeSwitcher() {
         <DropdownMenuSub>
             <DropdownMenuSubTrigger>
                 <Moon className="mr-2 h-4 w-4" />
-                <span>Dark Themes</span>
+                <span>Dark Theme</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
                 <DropdownMenuSubContent>
