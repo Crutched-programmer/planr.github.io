@@ -132,5 +132,3 @@ const generateStudyPlanFlow = ai.defineFlow(
     return output!;
   }
 );
-
-    

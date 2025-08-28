@@ -79,4 +79,3 @@ const improveStudyPlanFlow = ai.defineFlow(
     return output!;
   }
 );
-
