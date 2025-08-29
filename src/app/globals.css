@@ -57,7 +57,7 @@
 @layer utilities {
   .text-glow {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, hsl(var(--primary-light)), hsl(var(--primary)), hsl(var(--primary-dark)), hsl(var(--primary)), hsl(var(--primary-light)));
+    background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--primary)));
     filter: drop-shadow(0 0 8px hsla(var(--primary), 0.6));
     animation: gradient-flow 3s linear infinite;
     background-size: 200% auto;
