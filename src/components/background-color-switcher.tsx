@@ -12,11 +12,11 @@ import {
 import { cn } from '@/lib/utils';
 
 const colors = [
-  { name: 'Abyss', value: 'hsl(220 40% 5%)' },
-  { name: 'Dusk', value: 'hsl(20 30% 10%)' },
-  { name: 'Forest', value: 'hsl(140 20% 8%)' },
-  { name: 'Grape', value: 'hsl(280 25% 10%)' },
-  { name: 'Ocean', value: 'hsl(190 40% 8%)' },
+  { name: 'Slate', value: 'hsl(220 40% 5%)' },
+  { name: 'Sky', value: 'hsl(210 80% 35%)' },
+  { name: 'Indigo', value: 'hsl(260 70% 30%)' },
+  { name: 'Sunset', value: 'hsl(25 80% 40%)' },
+  { name: 'Teal', value: 'hsl(180 70% 25%)' },
 ];
 
 const LOCAL_STORAGE_KEY_BG = 'planrBackgroundColor';
