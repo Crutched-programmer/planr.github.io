@@ -5,11 +5,8 @@
 
 @layer base {
   html {
-    /* New background for the glassmorphism effect */
+    /* Plain background color that can be easily changed */
     background-color: hsl(220 40% 5%);
-    background-image: radial-gradient(circle at top left, hsl(18 80% 65% / 0.5), transparent 30%),
-                      radial-gradient(circle at bottom right, hsl(259 80% 65% / 0.3), transparent 40%);
-    background-attachment: fixed;
   }
   
   :root {
