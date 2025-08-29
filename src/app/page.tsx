@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
@@ -15,7 +14,7 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline flex items-center justify-center flex-wrap gap-x-2">
           <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" />
             Welcome to
-            <span className="text-glow">Planr</span>
+            <span className="text-white">Planr</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Your personal AI study planner. Optimize your learning by creating balanced daily study schedules tailored to your needs.
@@ -23,7 +22,7 @@ export default function Home() {
         </section>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <Card className="shadow-lg hover:shadow-xl transition-shadow">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow glass">
             <CardHeader>
               <UserCircle className="w-10 h-10 text-primary mb-3" />
               <CardTitle className="font-headline text-2xl">Set Up Your Profile</CardTitle>
@@ -41,7 +40,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg hover:shadow-xl transition-shadow">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow glass">
             <CardHeader>
               <CalendarDays className="w-10 h-10 text-primary mb-3" />
               <CardTitle className="font-headline text-2xl">Get Your Daily Plan</CardTitle>
@@ -66,5 +65,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
