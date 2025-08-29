@@ -19,7 +19,7 @@
     --background: 220 10% 10% / 0.6; /* Semi-transparent dark background */
     --foreground: 0 0% 98%;
     
-    --card: 220 10% 15% / 0.5; /* Slightly lighter transparent background for cards */
+    --card: 0 0% 100% / 0.05; /* Translucent white for adaptive tint */
     --card-foreground: 0 0% 95%;
 
     --popover: 220 10% 20% / 0.8; /* More opaque for popovers */
@@ -38,7 +38,7 @@
     --accent-foreground: 0 0% 90%;
     
     --border: 0 0% 100% / 0.1; /* Translucent borders */
-    --input: 220 10% 20% / 0.5; /* Translucent inputs */
+    --input: 0 0% 100% / 0.08; /* Translucent white for adaptive tint */
     --ring: 0 80% 65%;
   }
 
