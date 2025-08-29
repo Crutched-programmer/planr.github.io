@@ -392,7 +392,7 @@ export default function QuizPage() {
         {!quizData ? renderQuizSetup() : renderQuizActive()}
       </main>
       <footer className="py-6 text-center text-sm text-muted-foreground border-t">
-        © {new Date().getFullYear()} Planr. Test your knowledge, one quiz at a time.
+        © {new Date().getFullYear()} Made with 💖 Planr. 
       </footer>
     </div>
   );

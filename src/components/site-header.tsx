@@ -2,12 +2,11 @@
 import { GraduationCap, UserCircle, CalendarDays, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ThemeSwitcher } from '@/components/theme-switcher';
 import React from 'react';
 
 function SiteHeaderComponent() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 glass">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Link href="/" className="mr-2 sm:mr-6 flex items-center space-x-2 text-primary text-glow">
           <GraduationCap className="h-6 w-6 icon-glow hard-glow" />
@@ -37,7 +36,7 @@ function SiteHeaderComponent() {
         </nav>
 
         <div className="flex items-center">
-            <ThemeSwitcher />
+            {/* ThemeSwitcher removed */}
         </div>
       </div>
     </header>
@@ -45,5 +44,3 @@ function SiteHeaderComponent() {
 }
 
 export const SiteHeader = React.memo(SiteHeaderComponent);
-
-    
