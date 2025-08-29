@@ -25,8 +25,8 @@
     --popover: 220 10% 20% / 0.8; /* More opaque for popovers */
     --popover-foreground: 0 0% 95%;
     
-    --primary: 0 80% 65%; 
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%; 
+    --primary-foreground: 0 0% 10%;
     
     --secondary: 0 0% 100% / 0.1; /* Very subtle secondary elements */
     --secondary-foreground: 0 0% 80%;
@@ -66,7 +66,7 @@
     filter: drop-shadow(0 0 8px hsla(var(--primary), 0.7));
   }
   .hard-glow {
-    filter: drop-shadow(0 0 15px hsla(var(--primary), 0.8));
+    filter: drop-shadow(0 0 15px hsla(var(--ring), 0.8));
   }
   .button-glow {
     box-shadow: 0 4px 15px 0 hsla(var(--primary), 0.4);
