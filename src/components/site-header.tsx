@@ -3,7 +3,6 @@ import { GraduationCap, UserCircle, CalendarDays, BrainCircuit } from 'lucide-re
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import { BackgroundColorSwitcher } from './background-color-switcher';
 
 function SiteHeaderComponent() {
   return (
@@ -37,7 +36,6 @@ function SiteHeaderComponent() {
         </nav>
 
         <div className="flex items-center">
-            <BackgroundColorSwitcher />
         </div>
       </div>
     </header>

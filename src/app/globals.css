@@ -6,9 +6,13 @@
 @layer base {
   html {
     /* Plain background color that can be easily changed */
-    background-color: hsl(220 40% 5%);
+    background-color: transparent;
   }
   
+  body {
+      background-color: transparent;
+  }
+
   :root {
     /* Removed all theme-specific hues */
     --destructive: 0 84.2% 60.2%;
@@ -16,7 +20,7 @@
     --radius: 0.8rem;
 
     /* Single new theme: Glassmorphism */
-    --background: 220 10% 10% / 0.6; /* Semi-transparent dark background */
+    --background: 220 10% 10% / 0; /* Fully transparent background for body */
     --foreground: 0 0% 98%;
     
     --card: 0 0% 100% / 0.05; /* Translucent white for adaptive tint */
