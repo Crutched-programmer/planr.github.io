@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-background`} suppressHydrationWarning>
         <PixelBlast variant="circle" color="#B19EEF" transparent={false} />
         <div className="relative z-10 flex flex-col min-h-screen">
             {children}
