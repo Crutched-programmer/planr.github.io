@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Inter, Lexend_Deca } from 'next/font/google';
-import PixelBlast from '@/components/pixel-blast';
+import { DynamicPixelBlast } from '@/components/dynamic-pixel-blast';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,8 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-background`} suppressHydrationWarning>
-        <PixelBlast variant="circle" color="#B19EEF" transparent={false} />
+      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-transparent`} suppressHydrationWarning>
+        <DynamicPixelBlast variant="circle" color="#B19EEF" transparent={false} />
         <div className="relative z-10 flex flex-col min-h-screen">
             {children}
             <Toaster />
