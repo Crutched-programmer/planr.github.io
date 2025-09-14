@@ -1,8 +1,8 @@
 import React from 'react';
 import { SiteHeader } from '@/components/site-header';
-import { ProfileForm } from '@/components/profile-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserCircle, Info } from 'lucide-react';
+import { ProfileClientPage } from '@/components/profile-client-page';
 
 export default function ProfilePage() {
   return (
@@ -27,7 +27,7 @@ export default function ProfilePage() {
             <CardDescription>This information is used as the basis for generating your daily study plans. It's saved locally in your browser.</CardDescription>
           </CardHeader>
           <CardContent>
-            <ProfileForm />
+            <ProfileClientPage />
              <div className="mt-6 flex items-center p-3 text-sm text-foreground bg-accent/30 border border-accent/50 rounded-md">
               <Info className="h-5 w-5 mr-2 text-accent-foreground flex-shrink-0" />
               <p>Changes saved here will be used for all future daily plan generations. Your data stays in your browser and is not sent anywhere until you request a plan.</p>
@@ -41,5 +41,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    

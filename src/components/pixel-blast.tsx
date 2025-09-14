@@ -77,7 +77,7 @@ const createTouchTexture = () => {
     ctx.shadowBlur = radius;
     ctx.shadowColor = `rgba(${color},${0.22 * intensity})`;
     ctx.beginPath();
-    ctx.fillStyle = 'rgba(255,0,0,1)';
+    ctx.fillStyle = 'rgb(62, 122, 75)';
     ctx.arc(pos.x - offset, pos.y - offset, radius, 0, Math.PI * 2);
     ctx.fill();
   };
@@ -333,14 +333,14 @@ const MAX_CLICKS = 10;
 const PixelBlast: React.FC<PixelBlastProps> = ({
   variant = 'square',
   pixelSize = 3,
-  color = '#B19EEF',
+  color = '#dbffd9',
   className,
   style,
   antialias = true,
   patternScale = 2,
   patternDensity = 1,
   liquid = false,
-  liquidStrength = 0.1,
+  liquidStrength = 0.5,
   liquidRadius = 1,
   pixelSizeJitter = 0,
   enableRipples = true,
@@ -349,9 +349,9 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
   rippleSpeed = 0.3,
   liquidWobbleSpeed = 4.5,
   autoPauseOffscreen = true,
-  speed = 0.5,
+  speed = 1.0,
   transparent = true,
-  edgeFade = 0.5,
+  edgeFade = 0,
   noiseAmount = 0
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);

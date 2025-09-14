@@ -42,7 +42,7 @@ function ProfileFormComponent() {
     resolver: zodResolver(ProfileDataSchema),
     defaultValues: {
       age: undefined, 
-      class: 'Grade or Year',
+      class: '',
       curriculum: '',
       examDate: undefined,
       schoolStartTime: '08:00',
@@ -62,8 +62,6 @@ function ProfileFormComponent() {
         if (parsedData.examDate && typeof parsedData.examDate === 'string') {
           parsedData.examDate = parseISO(parsedData.examDate); 
         }
-        // Allow any value for age, including characters. Zod validation handles type coercion later if necessary.
-        // No specific check needed here before resetting the form.
         form.reset(parsedData);
       }
     } catch (error) {
