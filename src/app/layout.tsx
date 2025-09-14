@@ -31,7 +31,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-transparent`} suppressHydrationWarning>
-        <DynamicPixelBlast variant="circle" color="#86cc83" transparent={false} />
+        <DynamicPixelBlast 
+            variant="circle" 
+            color="#86cc83" 
+            transparent={false} 
+            liquid={true}
+            liquidStrength={0.15}
+            liquidRadius={0.5}
+        />
         <div className="relative z-10 flex flex-col min-h-screen">
             {children}
             <Toaster />
