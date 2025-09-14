@@ -4,6 +4,7 @@ import { SiteHeader } from '@/components/site-header';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserCircle, CalendarDays, ArrowRight, GraduationCap } from 'lucide-react';
+import AsciiTextEffect from '@/components/ascii-text-effect';
 
 export default function Home() {
   return (
@@ -13,8 +14,7 @@ export default function Home() {
         <section className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 font-headline flex items-center justify-center flex-wrap gap-x-2">
           <GraduationCap className="w-10 h-10 md:w-12 md:h-12 text-primary" />
-            Welcome to
-            <span className="text-white">Planr</span>
+            <AsciiTextEffect text="Welcome to Planr" />
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Your personal AI study planner. Optimize your learning by creating balanced daily study schedules tailored to your needs.
