@@ -10,9 +10,8 @@ interface AsciiTextEffectProps {
 }
 
 const AsciiTextEffect: React.FC<AsciiTextEffectProps> = ({ text, className }) => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState(text.split('').map(() => ' ').join(''));
   const [isAnimating, setIsAnimating] = useState(true);
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
   const frameRequestRef = useRef<number>();
 
   useEffect(() => {
@@ -21,13 +20,12 @@ const AsciiTextEffect: React.FC<AsciiTextEffectProps> = ({ text, className }) =>
     const animate = () => {
       const textArray = text.split('');
       const newText = textArray.map((char, i) => {
-        if (char === ' ' || frame / 3 > i) {
+        if (char === ' ') return ' ';
+        if (frame / 3 > i) {
           return char;
         }
-
         const randomCharIndex = Math.floor(Math.random() * chars.length);
-        const randomChar = chars[randomCharIndex];
-        return randomChar;
+        return chars[randomCharIndex];
       }).join('');
 
       setDisplayText(newText);
@@ -43,7 +41,7 @@ const AsciiTextEffect: React.FC<AsciiTextEffectProps> = ({ text, className }) =>
 
     const startAnimation = () => {
         setIsAnimating(true);
-        setDisplayText('');
+        setDisplayText(text.split('').map(() => ' ').join(''));
         frame = 0;
         if(frameRequestRef.current) cancelAnimationFrame(frameRequestRef.current);
         animate();
@@ -51,18 +49,23 @@ const AsciiTextEffect: React.FC<AsciiTextEffectProps> = ({ text, className }) =>
 
     startAnimation();
 
-    // Clean up on component unmount
     return () => {
       if (frameRequestRef.current) {
         cancelAnimationFrame(frameRequestRef.current);
       }
-      timeoutsRef.current.forEach(clearTimeout);
     };
   }, [text]);
 
   return (
-    <span className={`${className} font-code`}>
-      {displayText}
+    <span className={`${className} font-code wavy-text`}>
+      {displayText.split('').map((char, index) => (
+        <span 
+          key={index} 
+          style={{ animationDelay: `${index * 0.05}s` }}
+        >
+          {char}
+        </span>
+      ))}
     </span>
   );
 };
