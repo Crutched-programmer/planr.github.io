@@ -57,11 +57,10 @@ const AsciiTextEffect: React.FC<AsciiTextEffectProps> = ({ text, className }) =>
   }, [text]);
 
   return (
-    <span className={`${className} font-code wavy-text`}>
+    <span className={`${className} font-code`}>
       {displayText.split('').map((char, index) => (
         <span 
-          key={index} 
-          style={{ animationDelay: `${index * 0.05}s` }}
+          key={index}
         >
           {char}
         </span>
