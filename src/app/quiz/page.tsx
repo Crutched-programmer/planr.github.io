@@ -23,7 +23,7 @@ export default function QuizPage() {
         <QuizClientPage />
         
       </main>
-      <footer className="py-6 text-center text-sm text-muted-foreground border-t">
+      <footer className="py-6 text-center text-sm text-muted-foreground border-t glass bg-background/30">
         © {new Date().getFullYear()} Made with 💖 Planr. 
       </footer>
     </div>

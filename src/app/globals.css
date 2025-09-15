@@ -14,25 +14,24 @@
   }
 
   :root {
-    /* Removed all theme-specific hues */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --radius: 0.8rem;
 
-    /* Single new theme: Glassmorphism */
-    --background: 220 10% 10% / 0; /* Fully transparent background for body */
+    --background: 220 10% 10% / 0; /* Fully transparent background */
+    --content-background: 220 20% 7% / 0.7; /* Semi-transparent dark bg for content */
     --foreground: 0 0% 98%;
     
-    --card: 0 0% 100% / 0.05; /* Translucent white for adaptive tint */
+    --card: 0 0% 100% / 0.08; /* Slightly more visible card bg */
     --card-foreground: 0 0% 95%;
 
-    --popover: 220 10% 20% / 0.8; /* More opaque for popovers */
+    --popover: 220 10% 20% / 0.9; /* More opaque for popovers */
     --popover-foreground: 0 0% 95%;
     
     --primary: 116 100% 93%;
     --primary-foreground: 120 100% 10%;
     
-    --secondary: 0 0% 100% / 0.1; /* Very subtle secondary elements */
+    --secondary: 0 0% 100% / 0.1;
     --secondary-foreground: 0 0% 80%;
 
     --muted: 0 0% 100% / 0.1;
@@ -41,8 +40,8 @@
     --accent: 0 0% 100% / 0.15;
     --accent-foreground: 0 0% 90%;
     
-    --border: 0 0% 100% / 0.1; /* Translucent borders */
-    --input: 0 0% 100% / 0.08; /* Translucent white for adaptive tint */
+    --border: 0 0% 100% / 0.15; /* More visible borders */
+    --input: 0 0% 100% / 0.1; /* Translucent inputs */
     --ring: 116 80% 65%;
   }
 
@@ -87,5 +86,18 @@
   }
   100% {
     background-position: 200% 50%;
+  }
+}
+
+.wavy-text {
+  animation: wave-text 2.5s ease-in-out infinite;
+}
+
+@keyframes wave-text {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
   }
 }

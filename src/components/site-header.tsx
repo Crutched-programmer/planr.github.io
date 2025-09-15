@@ -6,7 +6,7 @@ import React from 'react';
 
 function SiteHeaderComponent() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 glass">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-content-background glass">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Link href="/" className="mr-2 sm:mr-6 flex items-center space-x-2">
           <GraduationCap className="h-6 w-6 icon-glow hard-glow text-primary" />

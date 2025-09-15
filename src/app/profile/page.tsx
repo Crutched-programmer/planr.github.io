@@ -21,7 +21,7 @@ export default function ProfilePage() {
           </p>
         </section>
 
-        <Card className="shadow-lg">
+        <Card>
           <CardHeader>
             <CardTitle className="font-headline text-xl">Profile Details</CardTitle>
             <CardDescription>This information is used as the basis for generating your daily study plans. It's saved locally in your browser.</CardDescription>
@@ -35,7 +35,7 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </main>
-      <footer className="py-6 text-center text-sm text-muted-foreground border-t">
+      <footer className="py-6 text-center text-sm text-muted-foreground border-t glass bg-background/30">
         © {new Date().getFullYear()} Made with 💖 Planr.
       </footer>
     </div>

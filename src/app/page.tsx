@@ -22,7 +22,7 @@ export default function Home() {
         </section>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <Card className="shadow-lg hover:shadow-xl transition-shadow glass">
+          <Card>
             <CardHeader>
               <UserCircle className="w-10 h-10 text-primary mb-3" />
               <CardTitle className="font-headline text-2xl">Set Up Your Profile</CardTitle>
@@ -40,7 +40,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="shadow-lg hover:shadow-xl transition-shadow glass">
+          <Card>
             <CardHeader>
               <CalendarDays className="w-10 h-10 text-primary mb-3" />
               <CardTitle className="font-headline text-2xl">Get Your Daily Plan</CardTitle>
@@ -59,7 +59,7 @@ export default function Home() {
           </Card>
         </div>
       </main>
-      <footer className="py-6 text-center text-sm text-muted-foreground border-t">
+      <footer className="py-6 text-center text-sm text-muted-foreground border-t glass bg-background/30">
         © {new Date().getFullYear()} Made with 💖 Planr. 
       </footer>
     </div>
