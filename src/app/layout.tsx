@@ -32,11 +32,11 @@ export default function RootLayout({
       <head />
       <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground`} suppressHydrationWarning>
         <DynamicPixelBlast 
-            particleCount={20000}
+            particleCount={5000}
             particleColors={['#dbffd9', '#a0c4ff', '#D0B8FF']}
             particleSpread={15}
             speed={0.05}
-            particleBaseSize={1}
+            particleBaseSize={1.5}
             sizeRandomness={0.2}
             cameraDistance={15}
         />
