@@ -92,13 +92,13 @@ const Particles = ({
   particleSpread = 10,
   speed = 0.1,
   particleColors,
-  moveParticlesOnHover = false,
+  moveParticlesOnHover = true,
   particleHoverFactor = 1,
   alphaParticles = false,
-  particleBaseSize = 100,
+  particleBaseSize = 500,
   sizeRandomness = 1,
-  cameraDistance = 20,
-  disableRotation = false,
+  cameraDistance = 1,
+  disableRotation = true,
   className
 }) => {
   const containerRef = useRef(null);

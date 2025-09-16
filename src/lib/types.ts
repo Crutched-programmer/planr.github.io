@@ -3,7 +3,7 @@ import { z } from "zod";
 // Base schema for profile form fields, without refinement
 const ProfileFormFieldsSchema = z.object({
   age: z.coerce.number().min(5, "Age must be at least 5").max(100, "Age must be realistic").optional().nullable(),
-  class: z.string().min(1, "Class/Grade is required").max(50, "Class/Grade is too long"),
+  className: z.string().min(1, "Class/Grade is required").max(50, "Class/Grade is too long"),
   curriculum: z.string().min(1, "Curriculum is required").max(100, "Curriculum is too long"),
   examDate: z.date({ required_error: "Approximate or next major exam date is required." }),
   schoolStartTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, "Invalid time format (HH:MM)"),

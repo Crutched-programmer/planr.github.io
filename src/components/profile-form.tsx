@@ -42,7 +42,7 @@ function ProfileFormComponent() {
     resolver: zodResolver(ProfileDataSchema),
     defaultValues: {
       age: undefined, 
-      class: '',
+      className: '',
       curriculum: '',
       examDate: undefined,
       schoolStartTime: '08:00',
@@ -147,10 +147,10 @@ function ProfileFormComponent() {
           />
           <FormField
             control={form.control}
-            name="class"
+            name="className"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Class / Grade</FormLabel>
+                <FormLabel>className / Grade</FormLabel>
                 <FormControl>
                   <Input placeholder="e.g., 10th Grade or Year 11" {...field} />
                 </FormControl>
