@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-transparent`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground`} suppressHydrationWarning>
         <DynamicPixelBlast 
             particleCount={20000}
             particleColors={['#dbffd9', '#a0c4ff', '#D0B8FF']}

@@ -53,7 +53,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-transparent text-foreground; 
+    @apply bg-black text-foreground; 
   }
 }
     
