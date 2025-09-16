@@ -5,7 +5,7 @@ import { Renderer, Camera, Geometry, Program, Mesh } from 'ogl';
 
 import './PixelBlast.css';
 
-const defaultColors = ['#ffffff', '#ffffff', '#ffffff'];
+const defaultColors = ['#A1E3B3', '#79D793', '#32a852'];
 
 const hexToRgb = hex => {
   hex = hex.replace(/^#/, '');
@@ -95,7 +95,7 @@ const Particles = ({
   moveParticlesOnHover = true,
   particleHoverFactor = 1,
   alphaParticles = false,
-  particleBaseSize = 500,
+  particleBaseSize = 1000,
   sizeRandomness = 1,
   cameraDistance = 1,
   disableRotation = true,
