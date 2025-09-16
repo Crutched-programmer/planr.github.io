@@ -36,7 +36,7 @@ export default function RootLayout({
             particleColors={['#dbffd9', '#a0c4ff', '#D0B8FF']}
             particleSpread={15}
             speed={0.05}
-            particleBaseSize={1.5}
+            particleBaseSize={2.5}
             sizeRandomness={0.2}
             cameraDistance={15}
         />
