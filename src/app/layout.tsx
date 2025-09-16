@@ -32,12 +32,13 @@ export default function RootLayout({
       <head />
       <body className={`${inter.variable} ${lexendDeca.variable} font-body antialiased min-h-screen flex flex-col text-foreground bg-transparent`} suppressHydrationWarning>
         <DynamicPixelBlast 
-            variant="circle" 
-            color="#86cc83" 
-            transparent={false} 
-            liquid={true}
-            liquidStrength={0.15}
-            liquidRadius={0.5}
+            particleCount={20000}
+            particleColors={['#dbffd9', '#a0c4ff', '#D0B8FF']}
+            particleSpread={15}
+            speed={0.05}
+            particleBaseSize={1}
+            sizeRandomness={0.2}
+            cameraDistance={15}
         />
         <div className="relative z-10 flex flex-col min-h-screen">
             {children}
