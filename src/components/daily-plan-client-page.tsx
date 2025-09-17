@@ -75,6 +75,7 @@ function DailyPlanClientPageComponent() {
     const combinedInput: CombinedStudyPlanInput = {
       ...profileData,
       age: Number(profileData.age),
+      class: profileData.class, // Ensure 'class' is passed
       examDate: format(profileData.examDate, 'yyyy-MM-dd'), 
       currentDate: format(dailyData.currentDate, 'yyyy-MM-dd'),
       isLeaveDay: dailyData.isLeaveDay,
