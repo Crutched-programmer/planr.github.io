@@ -1,5 +1,4 @@
-VERSION 0.1.26
-This version is the latest yet and lays the foundation of the app, from the version 0.1.23 are the ddition of coloured themes ( with a burnt orange color as signature ) and in 0.1.24 and 0.1.25, I added and refines the QUIZ ME feature whihc generates a quiz based on the input topics and the data from the profile building section. 
+This was a simple school project that I whipped up. The original code was made using google's Firebase studio but later on, I couldnt publish it without a cloud billing account, Hence I prepared a duplicate site using base 44 with the same functionality and design but with changes ( giving rise to MK 2.0.0  which is the finnal version.) . 
 
-I am looking forward to adding in integration with google calandar or clock to set alarms for when sesions start and end.
-I am looking forward to make a version of this build where it integrates with a specifi IOT device that would set different modes based on time like study focus, piano time, break, sleep etc.
+Here is the link for the site, watch the demo video if you like.
+https://chroma-canvas-copy-8646b3b9.base44.app/home
